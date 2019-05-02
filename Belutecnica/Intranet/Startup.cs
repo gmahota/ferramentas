@@ -44,6 +44,8 @@ namespace Intranet
             //// Get Identity Default Options
             IConfigurationSection identityDefaultOptionsConfigurationSection = Configuration.GetSection("IdentityDefaultOptions");
 
+
+            
             services.Configure<IdentityDefaultOptions>(identityDefaultOptionsConfigurationSection);
 
             var identityDefaultOptions = identityDefaultOptionsConfigurationSection.Get<IdentityDefaultOptions>();
@@ -83,6 +85,9 @@ namespace Intranet
                 options.SlidingExpiration = true;
             });
 
+            //services.AddTransient<IClaimsTransformation, ClaimsTransformer>();
+            //services.AddAuthentication(IISServerDefaults.AuthenticationScheme);
+
             // Add custom role services
             services.AddTransient<IRoles, Roles>();
 
@@ -97,6 +102,11 @@ namespace Intranet
             services.Configure<IISServerOptions>(options => 
             {
                 options.AutomaticAuthentication = false;
+            });
+
+            services.Configure<IISOptions>(options => 
+            {
+                options.ForwardClientCertificate = false;
             });
 
             

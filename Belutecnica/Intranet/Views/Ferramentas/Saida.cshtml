@@ -76,7 +76,7 @@
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
                 @*<button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>*@
+                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>*@
 
                 @*<a class="btn btn-sm btn-outline-secondary" role="button" asp-action="Saida" asp-controller="Ferramentas">
                     <span class="fa fa-sign-out"></span>
@@ -113,9 +113,7 @@
 
 
 <div class="btn-group" role="group" aria-label="Basic example" style="padding-bottom:10px">
-    <a ID="AddNewFerramentaBt" class="btn btn-default" data-toggle="modal" data-target="#ferramentaModal">
-        <span class="fa fa-plus"></span> Ferramenta
-    </a>
+    
 
 </div>
 
@@ -151,14 +149,23 @@
                         </div>
 
                     </div>
-                    <div class="row">
+                    <div class="row" style="padding-top:10px">
+                        
                         <label class="control-label " for="nrDocExterno">Nr. Guia:</label>
-                        <div class="col-md-5">
+                        <div class="col-md-4">
 
 
                             <input asp-for="nrDocExterno" class="form-control" />
 
                         </div>
+
+                        <a ID="AddNewFerramentaBt" class="btn btn-default" data-toggle="modal" data-target="#ferramentaModal">
+                                <span class="fa fa-plus"></span> Ferramenta
+                            </a>
+
+                        
+
+                        
                     </div>
                     
                 </div>
