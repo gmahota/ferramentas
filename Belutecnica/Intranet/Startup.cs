@@ -94,6 +94,11 @@ namespace Intranet
             // Add DI for Dotnetdesk
             services.AddTransient<INetcoreService, NetcoreService>();
 
+            services.Configure<IISServerOptions>(options => 
+            {
+                options.AutomaticAuthentication = false;
+            });
+
             
 
             // Get SendGrid configuration options

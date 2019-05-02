@@ -1,0 +1,22 @@
+
+dotnet publish --self-contained  --output dist 
+
+--runtime win7-x64
+
+
+--powershell
+New-Service -Name intranet -BinaryPathName ((Get-Item c:\intranet\intranet.exe).FullName)
+Start-Service -Name intranet 
+Get-Service -Name intranet
+Invoke-WebRequest 'http://*:5000' -UseBasicParsing
+
+Start-Service : Service 'intranet (intranet)' cannot be sta
+wing error: Cannot start service intranet on computer '.'.
+
+
+.\RegisterService.ps1  -Name Intranet -DisplayName "My Cool Intranet@" -Description "This is the Intranet service." -Exe "c:\intranet\intranet.exe" -User Beluluane\Administrator
+
+
+
+Start-Service -Name intranet 
+
