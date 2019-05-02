@@ -1,0 +1,75 @@
+﻿@model Intranet.Models.Stock.CabecStock
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    td.details-control {
+        background: url('https://datatables.net/examples/resources/details_open.png') no-repeat center center;
+        cursor: pointer;
+    }
+
+    tr.shown td.details-control {
+        background: url('https://datatables.net/examples/resources/details_close.png') no-repeat center center;
+    }
+</style>
+
+@section Scripts
+    {
+
+
+    <script src="~/js/Consumiveis/"></script>
+
+
+}
+
+<div class="btn-group" role="group" aria-label="Entrega de Consumiveis ao Funcionario">
+    <a class="btn btn-outline-info" role="button" asp-action="Saida" asp-controller="Consumiveis">
+        <span class="fa fa-sign-out"></span>
+        Saida
+    </a>
+
+    <a class="btn btn-outline-success" role="button" asp-action="Entrada" asp-controller="Consumiveis">
+        <span class="fa fa-sign-in"></span>
+        Devolução
+    </a>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <br />
+        <hr />
+        <div class="content-box-large">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <h2 class="text-info">
+                        Consumiveis Pendentes <em class="text-primary">
+                            De Devolução
+                        </em>
+                    </h2>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table id="consumiveisTable" style="width:100%!important" class="table table-hover table-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Id</th>
+                            <th>Data</th>
+                            <th>Funcionario</th>
+                            <th>Nome</th>
+                            <th>Notas</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+        <hr />
+    </div>
+</div>

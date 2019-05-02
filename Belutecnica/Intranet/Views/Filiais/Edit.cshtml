@@ -1,0 +1,80 @@
+﻿@model Intranet.Models.Stock.Filial
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+<h4>Filial</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="filialId" />
+            <div class="form-group">
+                <label asp-for="nome" class="control-label"></label>
+                <input asp-for="nome" class="form-control" />
+                <span asp-validation-for="nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="descricao" class="control-label"></label>
+                <input asp-for="descricao" class="form-control" />
+                <span asp-validation-for="descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="porDefeito" /> @Html.DisplayNameFor(model => model.porDefeito)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="morada1" class="control-label"></label>
+                <input asp-for="morada1" class="form-control" />
+                <span asp-validation-for="morada1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="morada2" class="control-label"></label>
+                <input asp-for="morada2" class="form-control" />
+                <span asp-validation-for="morada2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cidade" class="control-label"></label>
+                <input asp-for="cidade" class="form-control" />
+                <span asp-validation-for="cidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="provincia" class="control-label"></label>
+                <input asp-for="provincia" class="form-control" />
+                <span asp-validation-for="provincia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="pais" class="control-label"></label>
+                <input asp-for="pais" class="form-control" />
+                <span asp-validation-for="pais" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="dataCriacao" class="control-label"></label>
+                <input asp-for="dataCriacao" class="form-control" />
+                <span asp-validation-for="dataCriacao" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+</body>
+</html>

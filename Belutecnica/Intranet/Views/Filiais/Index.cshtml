@@ -1,0 +1,133 @@
+﻿@model IEnumerable<Intranet.Models.Stock.Filial>
+
+@{
+    Layout = "_Layout";
+}
+
+@*@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminlteNetcoreIndex.cshtml";
+    ViewData["EntityIcon"] = "fa fa-building";
+    ViewData["ListTitle"] = "Lista de Filiais";
+    ViewData["IndexInfo"] = "Branch office is an outlet of a Company. To get started, you should have minimum one branch as your main office or headquarter.";
+}*@
+
+<!DOCTYPE html>
+
+
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2"> <span class="fa fa-building"></span> Filiais</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                @*<button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>*@
+
+                @*<a class="btn btn-sm btn-outline-secondary" role="button" asp-action="Saida" asp-controller="Ferramentas">
+                    <span class="fa fa-plus"></span>
+                    Saida
+                </a>
+
+                <a class="btn btn-sm btn-outline-secondary" role="button" asp-action="Entrada" asp-controller="Ferramentas">
+                    <span class="fa fa-minus"></span>
+                    Devolução
+                </a>*@
+            </div>
+            @*<button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    This week
+                </button>*@
+        </div>
+    </div>
+
+
+        <div class="row">
+            <div class="col-md-3">
+                <p>
+
+
+                    <a asp-action="Create" class="btn btn-primary btn-block margin-bottom"><i class="fa fa-book"></i> <span>Nova Filial</span></a>
+
+                </p>
+            </div>
+        </div>
+
+        <table class="table table-hover table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.descricao)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.porDefeito)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.morada1)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.morada2)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.cidade)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.provincia)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.pais)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dataCriacao)
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+
+                            <div class="tools">
+                                <a asp-action="Edit" asp-route-id="@item.filialId" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                                <a asp-action="Details" asp-route-id="@item.filialId" class="btn btn-primary btn-xs"><i class="fa fa-list"></i></a>
+                                <a asp-action="Delete" asp-route-id="@item.filialId" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.descricao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.porDefeito)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.morada1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.morada2)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cidade)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.provincia)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.pais)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dataCriacao)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+ 

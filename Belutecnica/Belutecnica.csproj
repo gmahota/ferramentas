@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4B9C0C71-D3CE-4F1B-96D7-59D032A48393}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Belutecnica</RootNamespace>
+    <AssemblyName>Belutecnica</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.ErpBS900, Version=9.1508.0.0, Culture=neutral, PublicKeyToken=e076e239d0e78a42, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\..\Source\IncenteaMZ\TFS\Marin Trading\MarinProject\C_Sharp\BServices\Libs\Interop.ErpBS900.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Geral.cs" />
+    <Compile Include="Helpers\PrimaveraConstHelper.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Libs\OLD\Mapas\GEEnc.rpt" />
+    <None Include="Libs\OLD\Mapas\Marin01.rpt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Libs\ADODB.dll" />
+    <Content Include="Libs\Interop.AdmBE900.dll" />
+    <Content Include="Libs\Interop.AdmBS900.dll" />
+    <Content Include="Libs\Interop.AdmDS900.dll" />
+    <Content Include="Libs\Interop.AdmEngine900.dll" />
+    <Content Include="Libs\Interop.AtpBE900.dll" />
+    <Content Include="Libs\Interop.BasBE900.dll" />
+    <Content Include="Libs\Interop.CblBE900.dll" />
+    <Content Include="Libs\Interop.CblCtlMovs900.dll" />
+    <Content Include="Libs\Interop.CblData900.dll" />
+    <Content Include="Libs\Interop.CnoBE900.dll" />
+    <Content Include="Libs\Interop.CollectionFactory.dll" />
+    <Content Include="Libs\Interop.COMSVCSLib.dll" />
+    <Content Include="Libs\Interop.CopPlataformaCOM900.dll" />
+    <Content Include="Libs\Interop.CrmBE900.dll" />
+    <Content Include="Libs\Interop.DfpBE900.dll" />
+    <Content Include="Libs\Interop.EapBE900.dll" />
+    <Content Include="Libs\Interop.ErpBE900.dll" />
+    <Content Include="Libs\Interop.ErpBS900.dll" />
+    <Content Include="Libs\Interop.ErpDS900.dll" />
+    <Content Include="Libs\Interop.Excel.dll" />
+    <Content Include="Libs\Interop.FacBE900.dll" />
+    <Content Include="Libs\Interop.FilBE900.dll" />
+    <Content Include="Libs\Interop.FilBS900.dll" />
+    <Content Include="Libs\Interop.FPSpreadADO.dll" />
+    <Content Include="Libs\Interop.GabBE900.dll" />
+    <Content Include="Libs\Interop.GcpBE900.dll" />
+    <Content Include="Libs\Interop.GprBE900.dll" />
+    <Content Include="Libs\Interop.GprPlataformaCOM900.dll" />
+    <Content Include="Libs\Interop.GprUS900.dll" />
+    <Content Include="Libs\Interop.IAtpBS900.dll" />
+    <Content Include="Libs\Interop.IBasBS900.dll" />
+    <Content Include="Libs\Interop.ICblBS900.dll" />
+    <Content Include="Libs\Interop.ICnoBS900.dll" />
+    <Content Include="Libs\Interop.ICrmBS900.dll" />
+    <Content Include="Libs\Interop.IEapBS900.dll" />
+    <Content Include="Libs\Interop.IFacBS900.dll" />
+    <Content Include="Libs\Interop.IGabBS900.dll" />
+    <Content Include="Libs\Interop.IGcpBS900.dll" />
+    <Content Include="Libs\Interop.IGprBS900.dll" />
+    <Content Include="Libs\Interop.IGprDS900.dll" />
+    <Content Include="Libs\Interop.IModulosBS900.dll" />
+    <Content Include="Libs\Interop.IModulosDS900.dll" />
+    <Content Include="Libs\Interop.IPCMBS900.dll" />
+    <Content Include="Libs\Interop.IRhpBS900.dll" />
+    <Content Include="Libs\Interop.IStpBS900.dll" />
+    <Content Include="Libs\Interop.ITteBS900.dll" />
+    <Content Include="Libs\Interop.MSComCtl2.dll" />
+    <Content Include="Libs\Interop.MSProject.dll" />
+    <Content Include="Libs\Interop.MSScriptControl.dll" />
+    <Content Include="Libs\Interop.Office.DLL" />
+    <Content Include="Libs\Interop.PbiBE900.dll" />
+    <Content Include="Libs\Interop.PbiBS900.dll" />
+    <Content Include="Libs\Interop.PCMBE900.dll" />
+    <Content Include="Libs\Interop.Primavera.BusinessData.ERPEngine900.dll" />
+    <Content Include="Libs\Interop.Primavera.Platform.Caching900.dll" />
+    <Content Include="Libs\Interop.PWSAlrExec900.dll" />
+    <Content Include="Libs\Interop.PWSBakExec900.dll" />
+    <Content Include="Libs\Interop.PWSEmlExec900.dll" />
+    <Content Include="Libs\Interop.PWSFilExec900.dll" />
+    <Content Include="Libs\Interop.PWSLicExec900.dll" />
+    <Content Include="Libs\Interop.PWSPanExec900.dll" />
+    <Content Include="Libs\Interop.PWSPbiExec900.dll" />
+    <Content Include="Libs\Interop.PWSProExec900.dll" />
+    <Content Include="Libs\Interop.PWSSmsExec900.dll" />
+    <Content Include="Libs\Interop.RhpBE900.dll" />
+    <Content Include="Libs\Interop.StdBackgrWorker900.dll" />
+    <Content Include="Libs\Interop.StdBE900.dll" />
+    <Content Include="Libs\Interop.StdBESql900.dll" />
+    <Content Include="Libs\Interop.StdBSSql900.dll" />
+    <Content Include="Libs\Interop.StdClasses900.dll" />
+    <Content Include="Libs\Interop.StdDS900.dll" />
+    <Content Include="Libs\Interop.StdDSSql900.dll" />
+    <Content Include="Libs\Interop.StdPlatBE900.dll" />
+    <Content Include="Libs\Interop.StdPlatBS900.dll" />
+    <Content Include="Libs\Interop.StdPlatDS900.dll" />
+    <Content Include="Libs\Interop.StdServices900.dll" />
+    <Content Include="Libs\Interop.StpBE900.dll" />
+    <Content Include="Libs\Interop.TteBE900.dll" />
+    <Content Include="Libs\OLD\ADODB.dll" />
+    <Content Include="Libs\OLD\Interop.AdmBE900.dll" />
+    <Content Include="Libs\OLD\Interop.AdmBS900.dll" />
+    <Content Include="Libs\OLD\Interop.AdmDS900.dll" />
+    <Content Include="Libs\OLD\Interop.AdmEngine900.dll" />
+    <Content Include="Libs\OLD\Interop.AtpBE900.dll" />
+    <Content Include="Libs\OLD\Interop.BasBE900.dll" />
+    <Content Include="Libs\OLD\Interop.CblBE900.dll" />
+    <Content Include="Libs\OLD\Interop.CblCtlMovs900.dll" />
+    <Content Include="Libs\OLD\Interop.CblData900.dll" />
+    <Content Include="Libs\OLD\Interop.CnoBE900.dll" />
+    <Content Include="Libs\OLD\Interop.COMSVCSLib.dll" />
+    <Content Include="Libs\OLD\Interop.CopPlataformaCOM900.dll" />
+    <Content Include="Libs\OLD\Interop.CrmBE900.dll" />
+    <Content Include="Libs\OLD\Interop.EapBE900.dll" />
+    <Content Include="Libs\OLD\Interop.ErpBE900.dll" />
+    <Content Include="Libs\OLD\Interop.ErpBS900.dll" />
+    <Content Include="Libs\OLD\Interop.ErpDS900.dll" />
+    <Content Include="Libs\OLD\Interop.Excel.dll" />
+    <Content Include="Libs\OLD\Interop.FacBE900.dll" />
+    <Content Include="Libs\OLD\Interop.FilBE900.dll" />
+    <Content Include="Libs\OLD\Interop.FilBS900.dll" />
+    <Content Include="Libs\OLD\Interop.FPSpreadADO.dll" />
+    <Content Include="Libs\OLD\Interop.GabBE900.dll" />
+    <Content Include="Libs\OLD\Interop.GcpBE900.dll" />
+    <Content Include="Libs\OLD\Interop.GprBE900.dll" />
+    <Content Include="Libs\OLD\Interop.GprPlataformaCOM900.dll" />
+    <Content Include="Libs\OLD\Interop.GprUS900.dll" />
+    <Content Include="Libs\OLD\Interop.IAtpBS900.dll" />
+    <Content Include="Libs\OLD\Interop.IBasBS900.dll" />
+    <Content Include="Libs\OLD\Interop.ICblBS900.dll" />
+    <Content Include="Libs\OLD\Interop.ICnoBS900.dll" />
+    <Content Include="Libs\OLD\Interop.ICrmBS900.dll" />
+    <Content Include="Libs\OLD\Interop.IEapBS900.dll" />
+    <Content Include="Libs\OLD\Interop.IFacBS900.dll" />
+    <Content Include="Libs\OLD\Interop.IGabBS900.dll" />
+    <Content Include="Libs\OLD\Interop.IGcpBS900.dll" />
+    <Content Include="Libs\OLD\Interop.IGprBS900.dll" />
+    <Content Include="Libs\OLD\Interop.IGprDS900.dll" />
+    <Content Include="Libs\OLD\Interop.IModulosBS900.dll" />
+    <Content Include="Libs\OLD\Interop.IModulosDS900.dll" />
+    <Content Include="Libs\OLD\Interop.IPCMBS900.dll" />
+    <Content Include="Libs\OLD\Interop.IRhpBS900.dll" />
+    <Content Include="Libs\OLD\Interop.IStpBS900.dll" />
+    <Content Include="Libs\OLD\Interop.ITteBS900.dll" />
+    <Content Include="Libs\OLD\Interop.MSComCtl2.dll" />
+    <Content Include="Libs\OLD\Interop.MSProject.dll" />
+    <Content Include="Libs\OLD\Interop.MSScriptControl.dll" />
+    <Content Include="Libs\OLD\Interop.Office.DLL" />
+    <Content Include="Libs\OLD\Interop.PbiBE900.dll" />
+    <Content Include="Libs\OLD\Interop.PbiBS900.dll" />
+    <Content Include="Libs\OLD\Interop.PCMBE900.dll" />
+    <Content Include="Libs\OLD\Interop.Primavera.BusinessData.ERPEngine900.dll" />
+    <Content Include="Libs\OLD\Interop.Primavera.Platform.Caching900.dll" />
+    <Content Include="Libs\OLD\Interop.PWSAlrExec900.dll" />
+    <Content Include="Libs\OLD\Interop.PWSBakExec900.dll" />
+    <Content Include="Libs\OLD\Interop.PWSEmlExec900.dll" />
+    <Content Include="Libs\OLD\Interop.PWSFilExec900.dll" />
+    <Content Include="Libs\OLD\Interop.PWSLicExec900.dll" />
+    <Content Include="Libs\OLD\Interop.PWSPanExec900.dll" />
+    <Content Include="Libs\OLD\Interop.PWSPbiExec900.dll" />
+    <Content Include="Libs\OLD\Interop.PWSProExec900.dll" />
+    <Content Include="Libs\OLD\Interop.PWSSmsExec900.dll" />
+    <Content Include="Libs\OLD\Interop.RhpBE900.dll" />
+    <Content Include="Libs\OLD\Interop.StdBackgrWorker900.dll" />
+    <Content Include="Libs\OLD\Interop.StdBE900.dll" />
+    <Content Include="Libs\OLD\Interop.StdBESql900.dll" />
+    <Content Include="Libs\OLD\Interop.StdBSSql900.dll" />
+    <Content Include="Libs\OLD\Interop.StdClasses900.dll" />
+    <Content Include="Libs\OLD\Interop.StdDS900.dll" />
+    <Content Include="Libs\OLD\Interop.StdDSSql900.dll" />
+    <Content Include="Libs\OLD\Interop.StdPlatBE900.dll" />
+    <Content Include="Libs\OLD\Interop.StdPlatBS900.dll" />
+    <Content Include="Libs\OLD\Interop.StdPlatDS900.dll" />
+    <Content Include="Libs\OLD\Interop.StdServices900.dll" />
+    <Content Include="Libs\OLD\Interop.StpBE900.dll" />
+    <Content Include="Libs\OLD\Interop.TteBE900.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Libs\Mapas\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

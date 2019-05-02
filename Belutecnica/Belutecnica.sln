@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intranet", "Intranet\Intranet.csproj", "{D35986AE-D37C-4652-A91A-DAB7A8C0D2EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BServices", "..\BServices\BServices.csproj", "{2D05374C-D113-4646-A796-BF32A3A334CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D35986AE-D37C-4652-A91A-DAB7A8C0D2EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D35986AE-D37C-4652-A91A-DAB7A8C0D2EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D35986AE-D37C-4652-A91A-DAB7A8C0D2EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D35986AE-D37C-4652-A91A-DAB7A8C0D2EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D05374C-D113-4646-A796-BF32A3A334CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D05374C-D113-4646-A796-BF32A3A334CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D05374C-D113-4646-A796-BF32A3A334CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D05374C-D113-4646-A796-BF32A3A334CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54B2E5FA-1113-45CA-87CA-385CF50AB052}
+	EndGlobalSection
+EndGlobal

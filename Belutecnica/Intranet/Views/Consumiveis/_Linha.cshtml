@@ -1,0 +1,82 @@
+﻿@section Scripts
+    {
+    
+
+
+}
+
+
+<div class="modal fade" id="ferramentaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ferramentas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputFerramenta" class="col-sm-3 col-form-label">Ferramenta</label>
+
+                        <div class="col-sm-8">
+
+                            <select id="listaArtigos" class="selectpicker form-control" data-live-search="true"></select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputQuantidade" class="col-sm-3 col-form-label">Quantidade</label>
+                        <div class="col-sm-4">
+                            <input id="quantidade" class='form-control' type='number' value='1' />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputQuantidade" class="col-sm-3 col-form-label">Area de Negocio</label>
+                        <div class="col-sm-8">
+                            <select id='ListAreaNegocio' class='selectpicker form-control' data-live-search='true'></select>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputProjecto" class="col-sm-3 col-form-label">Projecto</label>
+                        <div class="col-sm-8">
+                            <select id='listBoxProjecto' class='selectpicker form-control' data-live-search='true'></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputNotas" class="col-sm-2 col-form-label">Notas</label>
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <textarea id="notas" class='form-control' rows='5'></textarea>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-success" onclick="funtion:AddRow()">
+                    <span class='fa fa-plus'></span> Adicionar
+                </button>
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <span class='fa fa-remove'></span>Fechar
+                </button>
+
+                <button type="button" class="btn btn-primary" OnClick="funtion:clean()">
+                    <span class='fa fa-eraser'></span>Limpar
+                </button>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
