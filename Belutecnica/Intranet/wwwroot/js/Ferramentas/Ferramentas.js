@@ -5,6 +5,8 @@ var listaProjeto = {};
 var listaNegocio = {};
 var tipoArtigo = 52;
 
+var tempFuncionario = {};
+
 $(document).ready(function () {
 
     $(".linhasDoc").hide();
@@ -18,7 +20,9 @@ $(document).ready(function () {
         } else {
             $(".linhasDoc").show();
         }
-            
+
+        daFuncionario(data.id);
+        
     });
     
 
@@ -167,7 +171,7 @@ function selecionaFerramentaLinha(row) {
 
 }
 
-function actualizaProjecto(areaNegocio) {
+function actualizaProjecto() {
     var area = areaNegocio;
 
     if (area.length > 0) {
@@ -233,6 +237,17 @@ function GetListaProjeto() {
 
             listaProjeto = data;
 
+            $("#listBoxProjecto").empty();
+
+            var o = new Option("Selecione o Projecto", "");
+
+            $("#listBoxProjecto").append(o);
+
+            $.each(listaProjeto, function (key, value) {
+                var o = new Option(value.descricao, value.codigo);
+                $("#listBoxProjecto").append(o);
+            });
+
         }
     });
 }
@@ -260,18 +275,40 @@ function GetListaNegocio() {
     });
 }
 
-function daNomeFuncionario(funcionario) {
-    var nome = "";
+function daFuncionario(funcionario) {
+    var ccusto = "";
+    
+    tempFuncionario = {};
 
     $.each(listaFuncionarios, function (key, value) {
+        
+        if (value.codigo == funcionario) {
+            
+            tempFuncionario = value;
+            ccusto = tempFuncionario.ccusto;
+           
+        }
+    });
 
+    $("#ListAreaNegocio").val(ccusto).trigger("change");
+}
+
+/* function daNomeFuncionario(funcionario) {
+    var nome = "";
+
+    tempFuncionario = {};
+
+    $.each(listaFuncionarios, function (key, value) {
+        
         if (value.codigo == funcionario) {
             nome = value.nome;
+            tempFuncionario = value;
+            console.log(tempFuncionario);
         }
     });
 
     return nome;
-}
+} */
 
 function GetListaArtigosModal(tipo) {
     $.ajax({

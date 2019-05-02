@@ -15,5 +15,7 @@ namespace Intranet.Models.Stock
 
         public string cdu_CodigoBarras { get; set; }
 
+        public string ccusto { get; set; }
+
     }
 }

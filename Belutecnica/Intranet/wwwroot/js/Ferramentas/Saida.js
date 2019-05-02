@@ -8,12 +8,14 @@ $("#ListAreaNegocio").select2({
     dropdownParent: $("#ferramentaModal")
 });
 
+$("#ListAreaNegocio").prop('disabled',true);
+
 $("#listBoxProjecto").select2({
     dropdownParent: $("#ferramentaModal")
 });
 
 $('#ListAreaNegocio').on('change', function (e) {
-    actualizaProjecto($('#ListAreaNegocio').val());
+    
 });
 
 $('#tableFerramentas').DataTable({
@@ -160,8 +162,7 @@ function clean() {
 
     $("#listaArtigos").val("").trigger("change");;
     $("#quantidade").val(1);
-    $("#ListAreaNegocio").val("").trigger("change");;
-
+    $("#ListAreaNegocio").val(tempFuncionario.ccusto).trigger("change");
     $("#listBoxProjecto").val("").trigger("change");;
     $("#notas").val("");
 }

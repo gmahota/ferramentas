@@ -49,7 +49,12 @@ namespace Intranet.Controllers
         {
             try
             {
-                var strSql = @"select Codigo,Nome,CDU_CodigoBarras from PRIBELUAGRO.dbo.Funcionarios";
+                var strSql = @"select f.Codigo,f.Nome,isnull(f.CDU_CodigoBarras,'') as CDU_CodigoBarras , 
+                    isnull(fc.Ccusto,'') as Ccusto 
+                        from PRIBELUAGRO.dbo.Funcionarios f with(nolock)
+                        left outer join PRIBELUAGRO.dbo.funcccusto fc with(nolock) on fc.funcionario = f.codigo 
+                            and ano = year(getdate()) and mesfiscal = month(getdate()) 
+                            and fc.principal = 1";
 
                 var listaFuncionarios = _context.Funcionarios.FromSql(strSql);
 
@@ -67,8 +72,7 @@ namespace Intranet.Controllers
         {
             try
             {
-                var strSql = string.Format( @"select Centro as codigo, descricao from PRIBELUAGRO.dbo.planocentros
-                    where TipoConta = 'M' and Inactivo = 0 and Ano = YEAR(GetDate()) and centro like '{0}%'",areaNegocio);
+                var strSql ="select [ID],[Codigo],[Descricao] from PRIBELUAGRO.dbo.COP_Obras";
 
                 var listaProjeto = _context.Projeto.FromSql(strSql);
 
@@ -86,7 +90,7 @@ namespace Intranet.Controllers
             try
             {
                 var strSql = @"select Centro as codigo, descricao from PRIBELUAGRO.dbo.planocentros
-                    where TipoConta = 'R' and Inactivo = 0 and Ano = YEAR(GetDate())";
+                    where TipoConta = 'M' and Inactivo = 0 and Ano = YEAR(GetDate())";
 
                 var listaProjeto = _context.Projeto.FromSql(strSql);
 
