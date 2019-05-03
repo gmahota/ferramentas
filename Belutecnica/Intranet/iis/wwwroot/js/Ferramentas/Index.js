@@ -11,13 +11,8 @@ $(document).ready(function () {
         "sAjaxSource": '/Ferramentas/Lista',
         "columnDefs": [
             {
-                "targets": [0],
-                "visible": true,
-                "searchable": true
-            },
-            {
-                "targets": [1], "render": function (data) {
-                    return moment(data).format('DD-MM-YYYY');
+                "targets": [0], "render": function (data) {
+                    return moment(data).format('DD-MM-YYYY HH:mm');
                 }
             }
         ],
@@ -25,10 +20,10 @@ $(document).ready(function () {
 
 
             //{ "data": "id", "title": "Nr. Doc." },
-            { "data": "nrDocExterno", "title": "Nr. Doc. Externo" },
             { "data": "data","title":"Data" },
-            { "data": "funcionario","title":"Funcionario" },
+            { "data": "funcionario","title":"Funcionário" },
             { "data": "nome", "title": "Nome" },
+            { "data": "nrDocExterno", "title": "Nr. da Guia" },
             { "data": "notas", "title": "Notas" },
             {
                 "className": 'details-control',

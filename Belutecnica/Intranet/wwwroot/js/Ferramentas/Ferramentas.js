@@ -3,7 +3,7 @@ var listaArtigos = {};
 var listaFuncionarios = {};
 var listaProjeto = {};
 var listaNegocio = {};
-var tipoArtigo = 3;
+var tipoArtigo = 52;
 
 var tempFuncionario = {};
 
@@ -171,40 +171,6 @@ function selecionaFerramentaLinha(row) {
 
 }
 
-function actualizaProjecto() {
-    var area = areaNegocio;
-
-    if (area.length > 0) {
-        $.ajax({
-            url: "/Iventario/ListaProjetos_CentroCusto?areaNegocio=" + area,
-            data: areaNegocio,
-            type: "Get",
-            contentType: "application/json",
-            success: function (data) {
-
-                listaProjeto = data;
-
-                $("#listBoxProjecto").empty();
-
-                var o = new Option("Selecione o Projecto", "");
-
-                $("#listBoxProjecto").append(o);
-
-                $.each(listaProjeto, function (key, value) {
-                    var o = new Option(value.descricao, value.codigo);
-                    $("#listBoxProjecto").append(o);
-                });
-            }
-        });
-    } else {
-        $("#listBoxProjecto").empty();
-    }
-    
-
-    
-
-}
-
 function GetListaFuncionarios() {
     $.ajax({
         url: "/Iventario/ListaFuncionarios",
@@ -230,7 +196,7 @@ function GetListaFuncionarios() {
 
 function GetListaProjeto() {
     $.ajax({
-        url: "/Iventario/ListaProjetos_CentroCusto",
+        url: "/Iventario/ListaProjetos",
         type: "Get",
         contentType: "application/json",
         success: function (data) {
@@ -244,7 +210,7 @@ function GetListaProjeto() {
             $("#listBoxProjecto").append(o);
 
             $.each(listaProjeto, function (key, value) {
-                var o = new Option(value.descricao, value.codigo);
+                var o = new Option(value.codigo, value.codigo);
                 $("#listBoxProjecto").append(o);
             });
 
@@ -292,23 +258,6 @@ function daFuncionario(funcionario) {
 
     $("#ListAreaNegocio").val(ccusto).trigger("change");
 }
-
-/* function daNomeFuncionario(funcionario) {
-    var nome = "";
-
-    tempFuncionario = {};
-
-    $.each(listaFuncionarios, function (key, value) {
-        
-        if (value.codigo == funcionario) {
-            nome = value.nome;
-            tempFuncionario = value;
-            console.log(tempFuncionario);
-        }
-    });
-
-    return nome;
-} */
 
 function GetListaArtigosModal(tipo) {
     $.ajax({

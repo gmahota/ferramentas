@@ -77,6 +77,7 @@ function gravar(sair, tipodoc) {
         "tipodoc": tipodoc,
         "funcionario": $('#ListBoxfuncionario').val(),
         "nome": nomeFunc,
+        "nrDocExterno": $('#nrDocExterno').val(),
         //"data": $('#dtData').val(),
         //"notas": "",
         "status": 1,
@@ -85,7 +86,6 @@ function gravar(sair, tipodoc) {
 
     var rows = entradaferramentasTable.rows('.selected').data();
 
-    console.log(rows);
 
     for (var i = 0; i < rows.length; i++) {
         console.log(rows[i]);
@@ -101,6 +101,16 @@ function gravar(sair, tipodoc) {
         };
 
         cabecDoc.linhas.push(linha);
+    }
+
+    if (cabecDoc.funcionario.length == 0) {
+        alert("O Funcionário é de preencheminto obrigatorio!");
+        return;
+    }
+    
+    if (cabecDoc.nrDocExterno.length == 0) {
+        alert("O Número da Guia é de preencheminto obrigatorio!");
+        return;
     }
     
 

@@ -18,4 +18,10 @@ namespace Intranet.Models.Stock
         public string ccusto { get; set; }
 
     }
+
+    public class View_Funcionario_Ferramentas
+    {
+        
+
+    }
 }

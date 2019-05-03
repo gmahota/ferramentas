@@ -1,5 +1,7 @@
 
 dotnet publish --self-contained  --output dist 
+dotnet publish --runtime win7-x86 --output iis -c release
+
 
 --runtime win7-x64
 

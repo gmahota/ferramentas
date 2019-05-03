@@ -28,7 +28,7 @@ namespace Intranet.Controllers
                     @"
                         select artigo,descricao,CodBarras as codbarrasartigo, 'A' as armazem ,stkActual 
                           
-                        from PRIDEMO.dbo.Artigo a with(nolock)
+                        from PRIBELUAGRO.dbo.Artigo a with(nolock)
                         where a.TipoArtigo = '{0}'
                     ",tipo)
                     ;
@@ -65,6 +65,23 @@ namespace Intranet.Controllers
                 throw ex;
             }
 
+        }
+
+        [HttpGet]
+        public JsonResult ListaProjetos()
+        {
+            try
+            {
+                var strSql ="select [ID],[Codigo],[Descricao] from PRIBELUAGRO.dbo.COP_Obras";
+
+                var listaProjeto = _context.Projeto.FromSql(strSql);
+
+                return Json(listaProjeto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpGet]

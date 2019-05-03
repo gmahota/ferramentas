@@ -24,10 +24,12 @@ $('#tableFerramentas').DataTable({
     columns: [
         { data: 'Ferramenta' },
         { data: 'Desc' },
-        //{ data: 'CodBarras' },
         { data: 'Quantidade' },
         { data: 'Notas' },
+        { data: 'AreaNegocio' },
+        { data: 'Projecto' },
         { data: 'Accoes' }
+
     ]
 });
 
@@ -40,13 +42,16 @@ function AddRow() {
 
     var desc = $("#listaArtigos").select2('data')[0].text;
     
+    
     var linha = {
 
         Ferramenta: $("#listaArtigos").val(),
         Descricao: desc,
         CodBarras: "",
         Quantidade: $("#quantidade").val(),
-        Notas: $("#notas").val()
+        Notas: $("#notas").val(),
+        AreaNegocio:$('#ListAreaNegocio').val(),
+        Projecto:$('#listBoxProjecto').val()
 
     };
 
@@ -63,6 +68,8 @@ function AddRow() {
             //"CodBarras": linha.CodBarras,
             "Quantidade": linha.Quantidade,
             "Notas": linha.Notas,
+            "AreaNegocio":linha.AreaNegocio,
+            "Projecto":linha.Projecto,
             "Accoes":
                 //"<button class='btn btn-danger btn-sm' style ='font-size: 9px;' onclick = 'addRow($(this))' >" +
                 //"<span class='fa fa-check-square'></span>" +
@@ -109,7 +116,9 @@ function gravar(sair,tipodoc) {
                 "quantidade": this[0].Quantidade,
                 "quantTrans": 0,
                 "quantPendente": this[0].Quantidade,
-                "notas": this[0].Notas
+                "notas": this[0].Notas,
+                "areaNegocio": this[0].AreaNegocio,
+                "projecto": this[0].Projecto
             };
         
             cabecDoc.linhas.push(linha);
@@ -117,7 +126,13 @@ function gravar(sair,tipodoc) {
     }
 
     if (cabecDoc.funcionario.length == 0) {
-        alert("O Funcionario é de preencheminto obrigatorio!");
+        alert("O Funcionário é de preenchemento obrigatorio!");
+        return;
+    }
+
+    if (cabecDoc.nrDocExterno.length == 0) {
+        alert("O Número da Guia é de preenchemento obrigatorio!");
+        return;
     }
 
     if (cabecDoc.linhas.length > 0) {

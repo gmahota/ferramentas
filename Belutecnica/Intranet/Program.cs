@@ -26,4 +26,3 @@ namespace Intranet
     }
 }
 
-//.UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002")

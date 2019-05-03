@@ -209,6 +209,60 @@ namespace Intranet.Controllers
             
         }
 
+        /* public JsonResult Dashboard_Funcionario(DatatableAjaxModel param)
+        {
+            try{
+                ids = (from a in cabecDoc.Where(c => c.status == StockStatus.Aberto )
+                        select a.funcionario, a.nome).Distinct();
+                .
+            IEnumerable<Funcionarios> linhas = _context.Funcionarios
+                .Where(c => c. == StockStatus.Aberto )
+            )
+            .ToList<ViewLinhasStock>();
+            
+            var totalCustomers = linhas.Count();
+            
+            var sortDirection = HttpContext.Request.Query["sSortDir_0"]; // asc or desc
+            var sortColumnIndex = Convert.ToInt32(HttpContext.Request.Query["iSortCol_0"]);
+
+            switch (sortColumnIndex)
+            {
+                case 1:
+                    linhas = sortDirection == "asc" ? linhas.OrderBy(z => z.data) : linhas.OrderByDescending(z => z.data);
+                    break;
+                case 2:
+                    linhas = sortDirection == "asc" ? linhas.OrderBy(z => z.artigo) : linhas.OrderByDescending(z => z.artigo);
+                    break;
+                case 3:
+                    linhas = sortDirection == "asc" ? linhas.OrderBy(z => z.descricao) : linhas.OrderByDescending(z => z.descricao);
+                    break;
+                default:
+                    linhas = linhas.OrderBy(z => z.data);
+                    break;
+
+
+            }
+            var filteredCustomersCount = linhas.Count();
+            linhas = linhas.Skip(param.iDisplayStart).Take(param.iDisplayLength);
+            return Json(new
+            {
+                sEcho = param.sEcho,
+                iTotalRecords = totalCustomers,
+                iTotalDisplayRecords = filteredCustomersCount,
+                aaData = linhas
+            });
+            }catch(Exception ex){
+
+                return Json(new{
+                    sEcho = "",
+                    iTotalRecords = 0,
+                    iTotalDisplayRecords = 0,
+                    aaData = new List<ViewLinhasStock> ()
+                });
+            }
+            
+        } */
+
         // GET: Ferramentas
         public ActionResult Index()
         {
