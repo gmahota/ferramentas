@@ -21,13 +21,21 @@ $('#ListAreaNegocio').on('change', function (e) {
 $('#tableFerramentas').DataTable({
 
     //data: data,
-    columns: [
-        { data: 'Ferramenta' },
-        { data: 'Desc' },
-        { data: 'Quantidade' },
-        { data: 'Notas' },
-        { data: 'AreaNegocio' },
-        { data: 'Projecto' },
+    "columnDefs": [
+        {
+            "targets": [4],
+            "visible": false,
+            "searchable": false
+        }
+    ],
+    "columns": [
+        { data: 'Ferramenta', "title": "Ferramenta" },
+        { data: 'Desc', "title": "Descrição" },
+        { data: 'Quantidade', "title": "Quant." },
+        { data: 'Notas', "title": "Notas" },
+        { data: 'AreaNegocio', "title": "Centro de Negocio" },
+        { data: 'AreaNegocio_Descricao', "title": "Desc. Centro de Negocio" },
+        { data: 'Projecto', "title": "Projecto" },
         { data: 'Accoes' }
 
     ]
@@ -68,7 +76,8 @@ function AddRow() {
             //"CodBarras": linha.CodBarras,
             "Quantidade": linha.Quantidade,
             "Notas": linha.Notas,
-            "AreaNegocio":linha.AreaNegocio,
+            "AreaNegocio": linha.AreaNegocio,
+            "AreaNegocio_Descricao": linha.AreaNegocio,
             "Projecto":linha.Projecto,
             "Accoes":
                 //"<button class='btn btn-danger btn-sm' style ='font-size: 9px;' onclick = 'addRow($(this))' >" +
