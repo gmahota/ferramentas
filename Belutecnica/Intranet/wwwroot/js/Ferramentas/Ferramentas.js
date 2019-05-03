@@ -3,7 +3,7 @@ var listaArtigos = {};
 var listaFuncionarios = {};
 var listaProjeto = {};
 var listaNegocio = {};
-var tipoArtigo = 52;
+var tipoArtigo = 3;
 
 $(document).ready(function () {
 

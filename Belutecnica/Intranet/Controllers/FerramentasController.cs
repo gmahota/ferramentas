@@ -279,46 +279,46 @@ namespace Intranet.Controllers
                            select a.idLinhaOrigem).Distinct();
 
                 
-                    foreach (var id in ids)
+                foreach (var id in ids)
+                {
+                    var linhaOrigem = _context.LinhasStock.First(p => p.id == id);
+
+                    var quantTrans = _context.LinhasStock.Where(p => p.idLinhaOrigem == id)
+                            .Sum(p => p.quantidade);
+
+                    linhaOrigem.quantTrans = quantTrans;
+                    linhaOrigem.quantPendente = linhaOrigem.quantidade - quantTrans;
+
+                    if (linhaOrigem.quantPendente == 0)
                     {
-                        var linhaOrigem = _context.LinhasStock.First(p => p.id == id);
+                        linhaOrigem.status = StockStatus.Fechado;
+                    }
 
-                        var quantTrans = _context.LinhasStock.Where(p => p.idLinhaOrigem == id)
-                                .Sum(p => p.quantidade);
+                    _context.Update(linhaOrigem);
+                    _context.SaveChanges();
 
-                        linhaOrigem.quantTrans = quantTrans;
-                        linhaOrigem.quantPendente = linhaOrigem.quantidade - quantTrans;
 
-                        if (linhaOrigem.quantPendente == 0)
-                        {
-                            linhaOrigem.status = StockStatus.Fechado;
-                        }
+                }
 
-                        _context.Update(linhaOrigem);
+                ids = (from a in cabecDoc.linhas
+                        select a.idDocumentoOrigem).Distinct();
+
+                foreach (var id in ids)
+                {
+
+
+                    var docAbertos = _context.LinhasStock.Where(p => p.status == StockStatus.Aberto && p.CabecStockId == id);
+
+                    if (docAbertos.Count() == 0)
+                    {
+                        var cabecOrigem = _context.CabecStock.First(p => p.id == id);
+
+                        cabecOrigem.status = StockStatus.Fechado;
+                        _context.Update(cabecOrigem);
                         _context.SaveChanges();
-
-
                     }
+                }
 
-                    ids = (from a in cabecDoc.linhas
-                           select a.idDocumentoOrigem).Distinct();
-
-                    foreach (var id in ids)
-                    {
-
-
-                        var docAbertos = _context.LinhasStock.Where(p => p.status == StockStatus.Aberto && p.idDocumentoOrigem == id);
-
-                        if (docAbertos.Count() == 0)
-                        {
-                            var cabecOrigem = _context.CabecStock.First(p => p.id == id);
-
-                            cabecOrigem.status = StockStatus.Fechado;
-                            _context.Update(cabecOrigem);
-                            _context.SaveChanges();
-                        }
-                    }
-                
 
 
 

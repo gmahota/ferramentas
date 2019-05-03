@@ -120,6 +120,12 @@ function gravar(sair,tipodoc) {
 
     if (cabecDoc.linhas.length > 0) {
 
+        $("#loadMe").modal({
+            backdrop: "static", //remove ability to close modal with click
+            keyboard: false, //remove option to close with keyboard
+            show: true //Display loader!
+        });
+
         $.ajax({
             url: "/Ferramentas/GravarSaida",
             type: "POST",
@@ -131,6 +137,7 @@ function gravar(sair,tipodoc) {
             dataType: "json",
             success: function (data) {
 
+                
                 if (data.success == true) {
                     if (sair == true) {
                         var url = '/Ferramentas';
@@ -145,8 +152,12 @@ function gravar(sair,tipodoc) {
 
                     alert("Ocorreu um erro durante a gravação");
                 }
+
+                $("#loadMe").modal("hide");
+
             },
             error: function (xhr, ajaxOptions, thrownError) {
+                $("#loadMe").modal("hide");
                 alert(xhr.status);
                 alert(thrownError);
             }

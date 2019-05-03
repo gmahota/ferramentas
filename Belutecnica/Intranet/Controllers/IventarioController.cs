@@ -28,7 +28,7 @@ namespace Intranet.Controllers
                     @"
                         select artigo,descricao,CodBarras as codbarrasartigo, 'A' as armazem ,stkActual 
                           
-                        from PRIBELUAGRO.dbo.Artigo a with(nolock)
+                        from PRIDEMO.dbo.Artigo a with(nolock)
                         where a.TipoArtigo = '{0}'
                     ",tipo)
                     ;
@@ -49,7 +49,7 @@ namespace Intranet.Controllers
         {
             try
             {
-                var strSql = @"select Codigo,Nome,CDU_CodigoBarras from PRIBELUAGRO.dbo.Funcionarios";
+                var strSql = @"select Codigo,Nome,CDU_CodigoBarras from PRIDEMO.dbo.Funcionarios";
 
                 var listaFuncionarios = _context.Funcionarios.FromSql(strSql);
 
@@ -67,7 +67,7 @@ namespace Intranet.Controllers
         {
             try
             {
-                var strSql = string.Format( @"select Centro as codigo, descricao from PRIBELUAGRO.dbo.planocentros
+                var strSql = string.Format( @"select Centro as codigo, descricao from PRIDEMO.dbo.planocentros
                     where TipoConta = 'M' and Inactivo = 0 and Ano = YEAR(GetDate()) and centro like '{0}%'",areaNegocio);
 
                 var listaProjeto = _context.Projeto.FromSql(strSql);
@@ -85,8 +85,8 @@ namespace Intranet.Controllers
         {
             try
             {
-                var strSql = @"select Centro as codigo, descricao from PRIBELUAGRO.dbo.planocentros
-                    where TipoConta = 'R' and Inactivo = 0 and Ano = YEAR(GetDate())";
+                var strSql = @"select Centro as codigo, descricao from PRIDEMO.dbo.planocentros
+                    where TipoConta = 'M' and Inactivo = 0 and Ano = YEAR(GetDate())";
 
                 var listaProjeto = _context.Projeto.FromSql(strSql);
 
