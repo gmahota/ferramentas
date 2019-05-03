@@ -10,6 +10,14 @@
     <Compile Remove="Migrations\20190403124506_Cabedoc_nomeFunc.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Scripts\Script_After_UpdateLinhas.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Scripts\Script_After_UpdateLinhas.sql" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />

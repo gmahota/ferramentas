@@ -28,7 +28,7 @@ namespace Intranet.Controllers
                     @"
                         select artigo,descricao,CodBarras as codbarrasartigo, 'A' as armazem ,stkActual 
                           
-                        from PRIBELUAGRO.dbo.Artigo a with(nolock)
+                        from PRIDEMO.dbo.Artigo a with(nolock)
                         where a.TipoArtigo = '{0}'
                     ",tipo)
                     ;
