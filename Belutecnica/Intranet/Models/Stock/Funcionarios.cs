@@ -21,7 +21,14 @@ namespace Intranet.Models.Stock
 
     public class View_Funcionario_Ferramentas
     {
-        
+        public string codigo { get; set; }
 
+        public string nome { get; set; }
+
+        public string cdu_CodigoBarras { get; set; }
+
+        public string ccusto { get; set; }
+
+        List<CabecStock> doc { get; set; }
     }
 }

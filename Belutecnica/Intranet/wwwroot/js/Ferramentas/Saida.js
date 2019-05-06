@@ -49,6 +49,7 @@ function AddRow() {
     }
 
     var desc = $("#listaArtigos").select2('data')[0].text;
+    var desc_centro = $("#ListAreaNegocio").select2('data')[0].text;
     
     
     var linha = {
@@ -77,7 +78,7 @@ function AddRow() {
             "Quantidade": linha.Quantidade,
             "Notas": linha.Notas,
             "AreaNegocio": linha.AreaNegocio,
-            "AreaNegocio_Descricao": linha.AreaNegocio,
+            "AreaNegocio_Descricao": desc_centro,
             "Projecto":linha.Projecto,
             "Accoes":
                 //"<button class='btn btn-danger btn-sm' style ='font-size: 9px;' onclick = 'addRow($(this))' >" +
