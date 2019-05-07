@@ -29,6 +29,6 @@ namespace Intranet.Models.Stock
 
         public string ccusto { get; set; }
 
-        List<CabecStock> doc { get; set; }
+        public List<ViewLinhasStock> linhas { get; set; }
     }
 }

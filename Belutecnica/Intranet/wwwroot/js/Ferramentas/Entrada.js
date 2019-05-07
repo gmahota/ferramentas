@@ -78,7 +78,7 @@ function gravar(sair, tipodoc) {
         "funcionario": $('#ListBoxfuncionario').val(),
         "nome": nomeFunc,
         "nrDocExterno": $('#nrDocExterno').val(),
-        //"data": $('#dtData').val(),
+        "data": moment($("#dtData").data("date")).format(),
         //"notas": "",
         "status": 1,
         "linhas": [],

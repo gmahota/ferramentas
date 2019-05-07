@@ -214,11 +214,46 @@ namespace Intranet.Controllers
             try
             {
 
-                IEnumerable<Funcionarios> linhas = _context.CabecStock.Where(c => c.status == StockStatus.Aberto)
-                            .Select(c=> new Funcionarios(){
+                List<View_Funcionario_Ferramentas> list = 
+                    _context.CabecStock.Where(c => c.status == StockStatus.Aberto)
+                            .Select(c=> new View_Funcionario_Ferramentas(){
                                 nome = c.nome,
                                 codigo = c.funcionario
-                            }).AsEnumerable().Distinct();
+                            }).Distinct().ToList<View_Funcionario_Ferramentas>();
+
+                for(int i = 0; i<list.Count(); i++)
+                {
+                    var funcionario = list[i].codigo;
+                        
+                        var itens =
+                        _context.LinhasStock
+                        .Where(p => p.status == StockStatus.Aberto).Join(
+                            _context.CabecStock
+                                .Where(c => c.funcionario.ToLower().Equals(funcionario)),
+                                    ls => ls.CabecStockId,
+                                    cs => cs.id,
+                                    (ls, cs) => new ViewLinhasStock
+                                    {
+                                        id = ls.id,
+                                        nrDocExterno = cs.nrDocExterno,
+                                        CabecStockId = cs.id,
+                                        data = cs.data,
+                                        artigo = ls.artigo,
+                                        descricao = ls.descricao,
+                                        quantidade = ls.quantidade,
+                                        quantPendente = ls.quantPendente,
+                                        quantTrans = ls.quantTrans,
+                                        notas = ls.notas,
+                                        funcionario = cs.funcionario,
+                                        status = ls.status,
+                                    }
+                            )
+                            .ToList<ViewLinhasStock>();
+
+                    list[i].linhas = itens;
+                }
+
+                IEnumerable<View_Funcionario_Ferramentas> linhas = list;
 
                 var totalCustomers = linhas.Count();
 
@@ -257,7 +292,7 @@ namespace Intranet.Controllers
                     sEcho = "",
                     iTotalRecords = 0,
                     iTotalDisplayRecords = 0,
-                    aaData = new List<ViewLinhasStock>()
+                    aaData = new List<View_Funcionario_Ferramentas>()
                 });
             }
 
@@ -303,7 +338,7 @@ namespace Intranet.Controllers
         {
             try
             {
-                cabecDoc.data = DateTime.Now;
+                //cabecDoc.data = ;
                 _context.Add(cabecDoc);
 
                 var result = _context.SaveChanges();
@@ -322,8 +357,6 @@ namespace Intranet.Controllers
         {
             try
             {
-                cabecDoc.data = DateTime.Now;
-
                 _context.Add(cabecDoc);
 
                 var result = _context.SaveChanges();

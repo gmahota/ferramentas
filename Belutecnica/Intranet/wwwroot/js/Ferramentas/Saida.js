@@ -96,8 +96,8 @@ function AddRow() {
     
 }
 
-function gravar(sair,tipodoc) {
-    
+function gravar(sair, tipodoc) {
+
     var linha = {};
 
     var nomeFunc = $("#ListBoxfuncionario").select2('data')[0].text;
@@ -107,7 +107,7 @@ function gravar(sair,tipodoc) {
         "funcionario": $('#ListBoxfuncionario').val(),
         "nome": nomeFunc,
         "nrDocExterno": $('#nrDocExterno').val(),
-        //"data": $('#dtData').val(),
+        "data": moment($("#dtData").data("date")).format() ,
         //"notas": "",
         "linhas": [],
     };
