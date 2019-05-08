@@ -2,23 +2,19 @@
     ViewData["Title"] = "Home Page";
 }
 
-    <style>
-        td.details-control {
-            background: url('/resources/details_open.png') no-repeat center center;
-            cursor: pointer;
-        }
-
-        tr.shown td.details-control {
-            background: url('/resources/details_close.png') no-repeat center center;
-        }
-    </style>
+<style>
+    td.details-control {
+        background: url('/resources/details_open.png') no-repeat center center;
+        cursor: pointer;
+    }
+    tr.shown td.details-control {
+        background: url('/resources/details_close.png') no-repeat center center;
+    }
+</style>
 
 @section Scripts
     {
-
-
-    <script src="~/Chart.js/utils.js"></script>
-
+        <script src="~/Chart.js/utils.js"></script>
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
@@ -58,7 +54,6 @@
             }
         });
     </script>
-
     <script src="~/js/Ferramentas/dashboard.js"></script>
 
 
@@ -83,5 +78,7 @@
 <h2>Ferramentas</h2>
 
 <div class="table-responsive">
-    <table id="tableEntradaFerramentas" class="table table-striped table-sm"></table>
+    <table id="tableEntradaFerramentas" class="table table-striped table-sm">
+        
+    </table>
 </div>

@@ -28,7 +28,7 @@ namespace Intranet.Controllers
                     @"
                         select artigo,descricao,CodBarras as codbarrasartigo, 'A' as armazem ,stkActual 
                           
-                        from PRIDEMO.dbo.Artigo a with(nolock)
+                        from PRIBELUAGRO.dbo.Artigo a with(nolock)
                         where a.TipoArtigo = '{0}'
                     ",tipo)
                     ;
@@ -51,8 +51,8 @@ namespace Intranet.Controllers
             {
                 var strSql = @"select f.Codigo,f.Nome,isnull(f.CDU_CodigoBarras,'') as CDU_CodigoBarras , 
                     isnull(fc.Ccusto,'') as Ccusto 
-                        from PRIDEMO.dbo.Funcionarios f with(nolock)
-                        left outer join PRIDEMO.dbo.funcccusto fc with(nolock) on fc.funcionario = f.codigo 
+                        from PRIBELUAGRO.dbo.Funcionarios f with(nolock)
+                        left outer join PRIBELUAGRO.dbo.funcccusto fc with(nolock) on fc.funcionario = f.codigo 
                             and ano = year(getdate()) and mesfiscal = month(getdate()) 
                             and fc.principal = 1";
 
@@ -72,7 +72,7 @@ namespace Intranet.Controllers
         {
             try
             {
-                var strSql ="select [ID],[Codigo],[Descricao] from PRIDEMO.dbo.COP_Obras";
+                var strSql ="select [ID],[Codigo],[Descricao] from PRIBELUAGRO.dbo.COP_Obras";
 
                 var listaProjeto = _context.Projeto.FromSql(strSql);
 
@@ -89,7 +89,7 @@ namespace Intranet.Controllers
         {
             try
             {
-                var strSql ="select [ID],[Codigo],[Descricao] from PRIDEMO.dbo.COP_Obras";
+                var strSql ="select [ID],[Codigo],[Descricao] from PRIBELUAGRO.dbo.COP_Obras";
 
                 var listaProjeto = _context.Projeto.FromSql(strSql);
 
@@ -106,7 +106,7 @@ namespace Intranet.Controllers
         {
             try
             {
-                var strSql = @"select Centro as codigo, descricao from PRIDEMO.dbo.planocentros
+                var strSql = @"select Centro as codigo, descricao from PRIBELUAGRO.dbo.planocentros
                     where TipoConta = 'M' and Inactivo = 0 and Ano = YEAR(GetDate())";
 
                 var listaProjeto = _context.Projeto.FromSql(strSql);

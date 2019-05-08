@@ -104,12 +104,12 @@ function gravar(sair, tipodoc) {
     }
 
     if (cabecDoc.funcionario.length == 0) {
-        alert("O Funcionário é de preencheminto obrigatorio!");
+        alert("É obrigatorio preencher o Funcionário!");
         return;
     }
     
     if (cabecDoc.nrDocExterno.length == 0) {
-        alert("O Número da Guia é de preencheminto obrigatorio!");
+        alert("É obrigatorio preencher O Número da Guia!");
         return;
     }
     

@@ -17,9 +17,6 @@ $(document).ready(function () {
             }
         ],
         "columns": [
-
-
-            //{ "data": "id", "title": "Nr. Doc." },
             { "data": "data","title":"Data" },
             { "data": "funcionario","title":"Funcionário" },
             { "data": "nome", "title": "Nome" },

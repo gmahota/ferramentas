@@ -21,13 +21,21 @@ $('#ListAreaNegocio').on('change', function (e) {
 $('#tableFerramentas').DataTable({
 
     //data: data,
-    columns: [
-        { data: 'Ferramenta' },
-        { data: 'Desc' },
-        { data: 'Quantidade' },
-        { data: 'Notas' },
-        { data: 'AreaNegocio' },
-        { data: 'Projecto' },
+    "columnDefs": [
+        {
+            "targets": [4],
+            "visible": false,
+            "searchable": false
+        }
+    ],
+    "columns": [
+        { data: 'Ferramenta', "title": "Ferramenta" },
+        { data: 'Desc', "title": "Descrição" },
+        { data: 'Quantidade', "title": "Quant." },
+        { data: 'Notas', "title": "Notas" },
+        { data: 'AreaNegocio', "title": "Centro de Negocio" },
+        { data: 'AreaNegocio_Descricao', "title": "Desc. Centro de Negocio" },
+        { data: 'Projecto', "title": "Projecto" },
         { data: 'Accoes' }
 
     ]
@@ -41,6 +49,7 @@ function AddRow() {
     }
 
     var desc = $("#listaArtigos").select2('data')[0].text;
+    var desc_centro = $("#ListAreaNegocio").select2('data')[0].text;
     
     
     var linha = {
@@ -68,7 +77,8 @@ function AddRow() {
             //"CodBarras": linha.CodBarras,
             "Quantidade": linha.Quantidade,
             "Notas": linha.Notas,
-            "AreaNegocio":linha.AreaNegocio,
+            "AreaNegocio": linha.AreaNegocio,
+            "AreaNegocio_Descricao": desc_centro,
             "Projecto":linha.Projecto,
             "Accoes":
                 //"<button class='btn btn-danger btn-sm' style ='font-size: 9px;' onclick = 'addRow($(this))' >" +
@@ -86,8 +96,8 @@ function AddRow() {
     
 }
 
-function gravar(sair,tipodoc) {
-    
+function gravar(sair, tipodoc) {
+
     var linha = {};
 
     var nomeFunc = $("#ListBoxfuncionario").select2('data')[0].text;
@@ -97,7 +107,7 @@ function gravar(sair,tipodoc) {
         "funcionario": $('#ListBoxfuncionario').val(),
         "nome": nomeFunc,
         "nrDocExterno": $('#nrDocExterno').val(),
-        //"data": $('#dtData').val(),
+        "data": moment($("#dtData").data("date")).format() ,
         //"notas": "",
         "linhas": [],
     };
