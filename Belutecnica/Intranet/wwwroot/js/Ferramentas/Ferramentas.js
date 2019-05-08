@@ -3,7 +3,7 @@ var listaArtigos = {};
 var listaFuncionarios = {};
 var listaProjeto = {};
 var listaNegocio = {};
-var tipoArtigo = 3;
+var tipoArtigo = 52;
 
 var tempFuncionario = {};
 

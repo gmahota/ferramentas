@@ -209,59 +209,94 @@ namespace Intranet.Controllers
             
         }
 
-        /* public JsonResult Dashboard_Funcionario(DatatableAjaxModel param)
+        public JsonResult Dashboard_Funcionario(DatatableAjaxModel param)
         {
-            try{
-                ids = (from a in cabecDoc.Where(c => c.status == StockStatus.Aberto )
-                        select a.funcionario, a.nome).Distinct();
-                .
-            IEnumerable<Funcionarios> linhas = _context.Funcionarios
-                .Where(c => c. == StockStatus.Aberto )
-            )
-            .ToList<ViewLinhasStock>();
-            
-            var totalCustomers = linhas.Count();
-            
-            var sortDirection = HttpContext.Request.Query["sSortDir_0"]; // asc or desc
-            var sortColumnIndex = Convert.ToInt32(HttpContext.Request.Query["iSortCol_0"]);
-
-            switch (sortColumnIndex)
+            try
             {
-                case 1:
-                    linhas = sortDirection == "asc" ? linhas.OrderBy(z => z.data) : linhas.OrderByDescending(z => z.data);
-                    break;
-                case 2:
-                    linhas = sortDirection == "asc" ? linhas.OrderBy(z => z.artigo) : linhas.OrderByDescending(z => z.artigo);
-                    break;
-                case 3:
-                    linhas = sortDirection == "asc" ? linhas.OrderBy(z => z.descricao) : linhas.OrderByDescending(z => z.descricao);
-                    break;
-                default:
-                    linhas = linhas.OrderBy(z => z.data);
-                    break;
+
+                List<View_Funcionario_Ferramentas> list = 
+                    _context.CabecStock.Where(c => c.status == StockStatus.Aberto)
+                            .Select(c=> new View_Funcionario_Ferramentas(){
+                                nome = c.nome,
+                                codigo = c.funcionario
+                            }).Distinct().ToList<View_Funcionario_Ferramentas>();
+
+                for(int i = 0; i<list.Count(); i++)
+                {
+                    var funcionario = list[i].codigo;
+                        
+                        var itens =
+                        _context.LinhasStock
+                        .Where(p => p.status == StockStatus.Aberto).Join(
+                            _context.CabecStock
+                                .Where(c => c.funcionario.ToLower().Equals(funcionario)),
+                                    ls => ls.CabecStockId,
+                                    cs => cs.id,
+                                    (ls, cs) => new ViewLinhasStock
+                                    {
+                                        id = ls.id,
+                                        nrDocExterno = cs.nrDocExterno,
+                                        CabecStockId = cs.id,
+                                        data = cs.data,
+                                        artigo = ls.artigo,
+                                        descricao = ls.descricao,
+                                        quantidade = ls.quantidade,
+                                        quantPendente = ls.quantPendente,
+                                        quantTrans = ls.quantTrans,
+                                        notas = ls.notas,
+                                        funcionario = cs.funcionario,
+                                        status = ls.status,
+                                    }
+                            )
+                            .ToList<ViewLinhasStock>();
+
+                    list[i].linhas = itens;
+                }
+
+                IEnumerable<View_Funcionario_Ferramentas> linhas = list;
+
+                var totalCustomers = linhas.Count();
+
+                var sortDirection = HttpContext.Request.Query["sSortDir_0"]; // asc or desc
+                var sortColumnIndex = Convert.ToInt32(HttpContext.Request.Query["iSortCol_0"]);
+
+                switch (sortColumnIndex)
+                {
+                    case 1:
+                        linhas = sortDirection == "asc" ? linhas.OrderBy(z => z.codigo) : linhas.OrderByDescending(z => z.codigo);
+                        break;
+                    case 2:
+                        linhas = sortDirection == "asc" ? linhas.OrderBy(z => z.nome) : linhas.OrderByDescending(z => z.nome);
+                        break;                    
+                    default:
+                        linhas = linhas.OrderBy(z => z.codigo);
+                        break;
 
 
+                }
+                var filteredCustomersCount = linhas.Count();
+                linhas = linhas.Skip(param.iDisplayStart).Take(param.iDisplayLength);
+                return Json(new
+                {
+                    sEcho = param.sEcho,
+                    iTotalRecords = totalCustomers,
+                    iTotalDisplayRecords = filteredCustomersCount,
+                    aaData = linhas
+                });
             }
-            var filteredCustomersCount = linhas.Count();
-            linhas = linhas.Skip(param.iDisplayStart).Take(param.iDisplayLength);
-            return Json(new
+            catch (Exception ex)
             {
-                sEcho = param.sEcho,
-                iTotalRecords = totalCustomers,
-                iTotalDisplayRecords = filteredCustomersCount,
-                aaData = linhas
-            });
-            }catch(Exception ex){
 
-                return Json(new{
+                return Json(new
+                {
                     sEcho = "",
                     iTotalRecords = 0,
                     iTotalDisplayRecords = 0,
-                    aaData = new List<ViewLinhasStock> ()
+                    aaData = new List<View_Funcionario_Ferramentas>()
                 });
             }
-            
-        } */
+
+        }
 
         // GET: Ferramentas
         public ActionResult Index()
@@ -303,7 +338,7 @@ namespace Intranet.Controllers
         {
             try
             {
-                cabecDoc.data = DateTime.Now;
+                //cabecDoc.data = ;
                 _context.Add(cabecDoc);
 
                 var result = _context.SaveChanges();
@@ -322,8 +357,6 @@ namespace Intranet.Controllers
         {
             try
             {
-                cabecDoc.data = DateTime.Now;
-
                 _context.Add(cabecDoc);
 
                 var result = _context.SaveChanges();

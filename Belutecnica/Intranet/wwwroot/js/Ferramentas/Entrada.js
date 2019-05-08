@@ -78,7 +78,7 @@ function gravar(sair, tipodoc) {
         "funcionario": $('#ListBoxfuncionario').val(),
         "nome": nomeFunc,
         "nrDocExterno": $('#nrDocExterno').val(),
-        //"data": $('#dtData').val(),
+        "data": moment($("#dtData").data("date")).format(),
         //"notas": "",
         "status": 1,
         "linhas": [],
@@ -104,12 +104,12 @@ function gravar(sair, tipodoc) {
     }
 
     if (cabecDoc.funcionario.length == 0) {
-        alert("O Funcionário é de preencheminto obrigatorio!");
+        alert("É obrigatorio preencher o Funcionário!");
         return;
     }
     
     if (cabecDoc.nrDocExterno.length == 0) {
-        alert("O Número da Guia é de preencheminto obrigatorio!");
+        alert("É obrigatorio preencher O Número da Guia!");
         return;
     }
     

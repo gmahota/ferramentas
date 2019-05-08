@@ -2,6 +2,15 @@
     ViewData["Title"] = "Home Page";
 }
 
+<style>
+    td.details-control {
+        background: url('/resources/details_open.png') no-repeat center center;
+        cursor: pointer;
+    }
+    tr.shown td.details-control {
+        background: url('/resources/details_close.png') no-repeat center center;
+    }
+</style>
 
 @section Scripts
     {
@@ -45,7 +54,7 @@
             }
         });
     </script>
-    <script src="~/js/dashboard.js"></script>
+    <script src="~/js/Ferramentas/dashboard.js"></script>
 
 
 }
