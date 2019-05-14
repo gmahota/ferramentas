@@ -26,12 +26,16 @@ namespace Intranet.Services
         private readonly IRoles _roles;
         private readonly SuperAdminDefaultOptions _superAdminDefaultOptions;
 
+        public Primavera _Primavera { get; set; }
+
         public NetcoreService(UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             ApplicationDbContext context,
             SignInManager<ApplicationUser> signInManager,
             IRoles roles,
-            IOptions<SuperAdminDefaultOptions> superAdminDefaultOptions)
+            IOptions<SuperAdminDefaultOptions> superAdminDefaultOptions,
+            IOptions<Primavera> primavera
+            )
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -39,6 +43,7 @@ namespace Intranet.Services
             _signInManager = signInManager;
             _roles = roles;
             _superAdminDefaultOptions = superAdminDefaultOptions.Value;
+            _Primavera = primavera.Value;
         }
 
         public async Task SendEmailBySendGridAsync(string apiKey, string fromEmail, string fromFullName, string subject, string message, string email)

@@ -28,6 +28,7 @@ $(document).ready(function () {
                 "data": null,
                 "defaultContent": ''
             }
+
         ]
     });
 
@@ -54,6 +55,36 @@ $(document).ready(function () {
                     { data: "quantPendente", title: "Qnt. Pend" },
                     { data: "notas", title: "Notas" }
                     
+                ]
+            });
+            row.child(subtbl).show();
+            tr.addClass('shown');
+        }
+    });
+
+    // Add event listener for opening and closing details
+    $('#ferramentasTable tbody').on('click', 'td.edit-control', function () {
+        var tr = $(this).closest('tr');
+        var row = ferramentasTable.row(tr);
+
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            var subtbl = $('<table class="table  table-bordered" style="width:100%"/>');
+            subtbl.DataTable({
+                data: row.data().linhas,
+                columns: [
+                    { data: "artigo", title: "Ferramenta" },
+                    { data: "descricao", title: "Descrição" },
+                    { data: "quantidade", title: "Quantidade" },
+                    { data: "quantTrans", title: "Qnt. Trans" },
+                    { data: "quantPendente", title: "Qnt. Pend" },
+                    { data: "notas", title: "Notas" }
+
                 ]
             });
             row.child(subtbl).show();

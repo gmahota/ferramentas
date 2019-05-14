@@ -14,6 +14,14 @@
     tr.shown td.details-control {
         background: url('/resources/details_close.png') no-repeat center center;
     }
+
+    td.edit-control {
+        background: url('/resources/details_open.png') no-repeat center center;
+        cursor: pointer;
+    }
+    tr.shown td.edit-control {
+        background: url('/resources/details_close.png') no-repeat center center;
+    }
 </style>
 
 @section Scripts
@@ -25,8 +33,6 @@
         <h1 class="h2"> <span class="fa fa-wrench"></span> Ferramentas</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
-                @*<button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>*@
 
                 <a class="btn btn-sm btn-outline-secondary" role="button" asp-action="Saida" asp-controller="Ferramentas">
                     <span class="fa fa-plus"></span>
@@ -36,6 +42,11 @@
                 <a class="btn btn-sm btn-outline-secondary" role="button" asp-action="Entrada" asp-controller="Ferramentas">
                     <span class="fa fa-minus"></span>
                     Devolução
+                </a>
+
+                <a class="btn btn-sm btn-outline-secondary" role="button" asp-action="Edit" asp-controller="Ferramentas">
+                    <span class="fa fa-edit"></span>
+                    Editar
                 </a>
             </div>
             @*<button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">

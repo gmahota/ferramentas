@@ -84,10 +84,7 @@ namespace Intranet
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
-
-            //services.AddTransient<IClaimsTransformation, ClaimsTransformer>();
-            //services.AddAuthentication(IISServerDefaults.AuthenticationScheme);
-
+            
             // Add custom role services
             services.AddTransient<IRoles, Roles>();
 
@@ -107,7 +104,7 @@ namespace Intranet
                 options.ForwardClientCertificate = false;
             });
 
-            
+            services.Configure<Primavera>(Configuration.GetSection("Primavera"));
 
             // Get SendGrid configuration options
             //services.Configure<SendGridOptions>(Configuration.GetSection("SendGridOptions"));

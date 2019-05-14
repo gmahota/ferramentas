@@ -1,0 +1,102 @@
+﻿@model Intranet.Models.Stock.CabecStock
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>CabecStock</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="numDoc" class="control-label"></label>
+                <input asp-for="numDoc" class="form-control" />
+                <span asp-validation-for="numDoc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="serie" class="control-label"></label>
+                <input asp-for="serie" class="form-control" />
+                <span asp-validation-for="serie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tipodoc" class="control-label"></label>
+                <select asp-for="tipodoc" class="form-control" asp-items="ViewBag.tipodoc"></select>
+                <span asp-validation-for="tipodoc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="entradaSaida" class="control-label"></label>
+                <input asp-for="entradaSaida" class="form-control" />
+                <span asp-validation-for="entradaSaida" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="funcionario" class="control-label"></label>
+                <input asp-for="funcionario" class="form-control" />
+                <span asp-validation-for="funcionario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nome" class="control-label"></label>
+                <input asp-for="nome" class="form-control" />
+                <span asp-validation-for="nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="armazem" class="control-label"></label>
+                <input asp-for="armazem" class="form-control" />
+                <span asp-validation-for="armazem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="localizacao" class="control-label"></label>
+                <input asp-for="localizacao" class="form-control" />
+                <span asp-validation-for="localizacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nrDocExterno" class="control-label"></label>
+                <input asp-for="nrDocExterno" class="form-control" />
+                <span asp-validation-for="nrDocExterno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="areaNegocio" class="control-label"></label>
+                <input asp-for="areaNegocio" class="form-control" />
+                <span asp-validation-for="areaNegocio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="projecto" class="control-label"></label>
+                <input asp-for="projecto" class="form-control" />
+                <span asp-validation-for="projecto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="notas" class="control-label"></label>
+                <input asp-for="notas" class="form-control" />
+                <span asp-validation-for="notas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="data" class="control-label"></label>
+                <input asp-for="data" class="form-control" />
+                <span asp-validation-for="data" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="integradoErp" /> @Html.DisplayNameFor(model => model.integradoErp)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="status" class="control-label"></label>
+                <select asp-for="status" class="form-control"></select>
+                <span asp-validation-for="status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

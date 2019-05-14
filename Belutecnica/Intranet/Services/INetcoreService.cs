@@ -11,6 +11,8 @@ namespace Intranet.Services
 {
     public interface INetcoreService
     {
+        Primavera _Primavera { get; set; }
+
         Task SendEmailBySendGridAsync(string apiKey, string fromEmail, string fromFullName, string subject, string message, string email);
 
         Task<bool> IsAccountActivatedAsync(string email, UserManager<ApplicationUser> userManager);

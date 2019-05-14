@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Intranet.Data;
+using Intranet.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +14,12 @@ namespace Intranet.Controllers
     public class IventarioController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly INetcoreService _netcore;
 
-        public IventarioController(ApplicationDbContext context)
+        public IventarioController(ApplicationDbContext context, INetcoreService netcore)
         {
             _context = context;
+            _netcore = netcore;
         }
 
         [HttpGet]
@@ -24,13 +27,14 @@ namespace Intranet.Controllers
         {
             try
             {
+
                 var strSql =string.Format(
                     @"
                         select artigo,descricao,CodBarras as codbarrasartigo, 'A' as armazem ,stkActual 
                           
-                        from PRIBELUAGRO.dbo.Artigo a with(nolock)
-                        where a.TipoArtigo = '{0}'
-                    ",tipo)
+                        from {0}.dbo.Artigo a with(nolock)
+                        where a.TipoArtigo = '{1}'
+                    ",_netcore._Primavera.database,tipo)
                     ;
 
                 var listaArtigos = _context.Artigos.FromSql(strSql);
@@ -49,12 +53,15 @@ namespace Intranet.Controllers
         {
             try
             {
-                var strSql = @"select f.Codigo,f.Nome,isnull(f.CDU_CodigoBarras,'') as CDU_CodigoBarras , 
+                var strSql =
+                    string.Format(
+                    @"select f.Codigo,f.Nome,isnull(f.CDU_CodigoBarras,'') as CDU_CodigoBarras , 
                     isnull(fc.Ccusto,'') as Ccusto 
-                        from PRIBELUAGRO.dbo.Funcionarios f with(nolock)
-                        left outer join PRIBELUAGRO.dbo.funcccusto fc with(nolock) on fc.funcionario = f.codigo 
+                        from {0}.dbo.Funcionarios f with(nolock)
+                        left outer join {0}.dbo.funcccusto fc with(nolock) on fc.funcionario = f.codigo 
                             and ano = year(getdate()) and mesfiscal = month(getdate()) 
-                            and fc.principal = 1";
+                            and fc.principal = 1", _netcore._Primavera.database)
+                    ;
 
                 var listaFuncionarios = _context.Funcionarios.FromSql(strSql);
 
@@ -72,7 +79,11 @@ namespace Intranet.Controllers
         {
             try
             {
-                var strSql ="select [ID],[Codigo],[Descricao] from PRIBELUAGRO.dbo.COP_Obras";
+                var strSql =
+                    string.Format(
+                    "select [ID],[Codigo],[Descricao] from {0}.dbo.COP_Obras", 
+                        _netcore._Primavera.database)
+                    ;
 
                 var listaProjeto = _context.Projeto.FromSql(strSql);
 
@@ -89,7 +100,10 @@ namespace Intranet.Controllers
         {
             try
             {
-                var strSql ="select [ID],[Codigo],[Descricao] from PRIBELUAGRO.dbo.COP_Obras";
+                var strSql =
+                    string.Format("select [ID],[Codigo],[Descricao] from {0}.dbo.COP_Obras",
+                        _netcore._Primavera.database)
+                    ;
 
                 var listaProjeto = _context.Projeto.FromSql(strSql);
 
@@ -106,8 +120,10 @@ namespace Intranet.Controllers
         {
             try
             {
-                var strSql = @"select Centro as codigo, descricao from PRIBELUAGRO.dbo.planocentros
-                    where TipoConta = 'M' and Inactivo = 0 and Ano = YEAR(GetDate())";
+                var strSql = string.Format(@"select Centro as codigo, descricao from PRIBELUAGRO.dbo.planocentros
+                    where TipoConta = 'M' and Inactivo = 0 and Ano = YEAR(GetDate())",
+                        _netcore._Primavera.database)
+                    ;
 
                 var listaProjeto = _context.Projeto.FromSql(strSql);
 
