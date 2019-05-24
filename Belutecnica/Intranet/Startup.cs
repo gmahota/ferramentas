@@ -106,17 +106,6 @@ namespace Intranet
 
             services.Configure<Primavera>(Configuration.GetSection("Primavera"));
 
-            // Get SendGrid configuration options
-            //services.Configure<SendGridOptions>(Configuration.GetSection("SendGridOptions"));
-
-            // Get SMTP configuration options
-            //services.Configure<SmtpOptions>(Configuration.GetSection("SmtpOptions"));
-
-            //services.Configure<AuthMessageSenderOptions>(Configuration);
-
-            // Get Super Admin Default options
-            //services.Configure<SuperAdminDefaultOptions>(Configuration.GetSection("SuperAdminDefaultOptions"));
-
             services.AddMvc(options =>
             {
                 options.RespectBrowserAcceptHeader = true; // false by default

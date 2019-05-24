@@ -3,7 +3,7 @@ var listaArtigos = {};
 var listaFuncionarios = {};
 var listaProjeto = {};
 var listaNegocio = {};
-var tipoArtigo = 52;
+var tipoArtigo = 3;
 
 var tempFuncionario = {};
 
@@ -24,12 +24,13 @@ $(document).ready(function () {
         daFuncionario(data.id);
         
     });
-    
+
+    GetListaFuncionarios();
 
     GetListaArtigos(tipoArtigo);
     GetListaArtigosModal(tipoArtigo);
 
-    GetListaFuncionarios();
+    
 
     GetListaProjeto();
 
@@ -190,6 +191,10 @@ function GetListaFuncionarios() {
                 var o = new Option(value.nome, value.codigo);
                 $("#ListBoxfuncionario").append(o);
             });
+
+            var func = $("#funcionario").val();
+
+            $("#ListBoxfuncionario").val(func).trigger("change");
         }
     });
 }

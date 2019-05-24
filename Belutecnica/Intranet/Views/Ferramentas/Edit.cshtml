@@ -5,98 +5,145 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<style>
+    td.details-control {
+        background: url('/resources/details_open.png') no-repeat center center;
+        cursor: pointer;
+    }
 
-<h4>CabecStock</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="id" />
-            <div class="form-group">
-                <label asp-for="numDoc" class="control-label"></label>
-                <input asp-for="numDoc" class="form-control" />
-                <span asp-validation-for="numDoc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="serie" class="control-label"></label>
-                <input asp-for="serie" class="form-control" />
-                <span asp-validation-for="serie" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="tipodoc" class="control-label"></label>
-                <select asp-for="tipodoc" class="form-control" asp-items="ViewBag.tipodoc"></select>
-                <span asp-validation-for="tipodoc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="entradaSaida" class="control-label"></label>
-                <input asp-for="entradaSaida" class="form-control" />
-                <span asp-validation-for="entradaSaida" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="funcionario" class="control-label"></label>
-                <input asp-for="funcionario" class="form-control" />
-                <span asp-validation-for="funcionario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="nome" class="control-label"></label>
-                <input asp-for="nome" class="form-control" />
-                <span asp-validation-for="nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="armazem" class="control-label"></label>
-                <input asp-for="armazem" class="form-control" />
-                <span asp-validation-for="armazem" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="localizacao" class="control-label"></label>
-                <input asp-for="localizacao" class="form-control" />
-                <span asp-validation-for="localizacao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="nrDocExterno" class="control-label"></label>
-                <input asp-for="nrDocExterno" class="form-control" />
-                <span asp-validation-for="nrDocExterno" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="areaNegocio" class="control-label"></label>
-                <input asp-for="areaNegocio" class="form-control" />
-                <span asp-validation-for="areaNegocio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="projecto" class="control-label"></label>
-                <input asp-for="projecto" class="form-control" />
-                <span asp-validation-for="projecto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="notas" class="control-label"></label>
-                <input asp-for="notas" class="form-control" />
-                <span asp-validation-for="notas" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="data" class="control-label"></label>
-                <input asp-for="data" class="form-control" />
-                <span asp-validation-for="data" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="integradoErp" /> @Html.DisplayNameFor(model => model.integradoErp)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="status" class="control-label"></label>
-                <select asp-for="status" class="form-control"></select>
-                <span asp-validation-for="status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    tr.shown td.details-control {
+        background: url('/resources/details_close.png') no-repeat center center;
+    }
+</style>
+
+@section Scripts
+{
+    <script src="~/js/Ferramentas/Edit.js"></script>
+}
+
+
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2"> <span class="fa fa-wrench"></span> Saida de Ferramentas</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+
+            <button id="btGravar_New" class="btn btn-sm btn-outline-success" onclick="funtion:gravar(false,'@Model.Documento.documento')">
+                <span class="fa fa-save"></span> Gravar
+            </button>
+
+            <button id="btGravar" class="btn btn-sm btn-outline-success" onclick="funtion:gravar(true,'@Model.Documento.documento')">
+                <span class="fa fa-floppy-o"></span> Gravar e Sair
+            </button>
+
+            <button id="btImprir" class="btn btn-sm btn-outline-primary" hidden>
+                <span class="fa fa-print"></span> Imprimir
+            </button>
+
+            <button id="btremover" class="btn btn-sm btn-outline-danger" onclick="funtion:Sair('@Model.Documento.descricao')">
+                <span class="fa fa-remove"></span> Cancelar
+            </button>
+        </div>
     </div>
 </div>
+    
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div class="card">
+        <div class="card-header">
+            <strong>Documento:</strong> @Model.Documento.descricao
 
+            <span class="float-right"> <strong>Estado:</strong> @Model.status</span>
+        </div>
+
+        <div class="card-body">
+            <form class="form-horizontal" role="form" style="padding-top:10px">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="row">
+                            <label class="control-label " for="funcionario">Funcionário:</label>
+
+                            <div class="col-md-4">
+                                <select id="ListBoxfuncionario" class="selectpicker form-control" data-live-search="true"></select>
+                            </div>
+
+
+                            <label class="control-label " for="data">Data:</label>
+
+                            <div class="input-group date col-md-5" id="dtData" data-target-input="nearest">
+                                <input asp-for="data" type="text" class="form-control datetimepicker-input" data-target="#dtData" />
+                                <div class="input-group-append" data-target="#dtData" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row" style="padding-top:10px">
+
+                            <label class="control-label " for="nrDocExterno">Nr. Guia:</label>
+                            <div class="col-md-4">
+
+
+                                <input asp-for="nrDocExterno" class="form-control" />
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="card-footer text-muted" style="background-color:white">
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group mr-2">
+                    <div>
+                        <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ferramentaModal">
+                            <span class="fa fa-plus"></span> Ferramenta
+                        </button>
+
+                        <button class="btn btn-outline-dark" onclick="funtion:editaFerramenta()">
+                            <span class="fa fa-edit"></span> Editar
+                        </button>
+
+                        <button class="btn  btn-outline-danger" onclick="funtion:removeFerramenta()">
+                            <span class="fa fa-remove"></span> Remover
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+                    <div class="container-fluid ">
+                        <table id="tableFerramentas" class="table table-hover table-sm col-sm-10" style="padding-top:20px; width:100%!important">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Ferramenta</th>
+                                    <th>Descrição</th>
+                                    <th>Quant.</th>
+                                    <th>Notas</th>
+                                    <th>Centro de Negocio</th>
+                                    <th>Desc. Centro de Negocio</th>
+                                    <th>Projecto</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody></tbody>
+                            <tfoot>
+
+                            </tfoot>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+<input type="hidden" asp-for="id" />
+<input type="hidden" asp-for="funcionario"/>
+
+<partial name="_Linha" />

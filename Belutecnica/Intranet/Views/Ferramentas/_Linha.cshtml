@@ -17,6 +17,8 @@
             </div>
             <div class="modal-body">
                 <form>
+                    <input type="hidden" id="idLinha" />
+                    
                     <div class="form-group row">
                         <label for="inputFerramenta" class="col-sm-3 col-form-label">Ferramenta</label>
 
@@ -33,7 +35,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="inputQuantidade" class="col-sm-3 col-form-label" >Centro de Negocio</label>
+                        <label for="inputQuantidade" class="col-sm-3 col-form-label">Centro de Negocio</label>
                         <div class="col-sm-8">
                             <select id='ListAreaNegocio' class='selectpicker form-control' data-live-search='true'></select>
 
@@ -61,21 +63,25 @@
             </div>
             <div class="modal-footer">
 
-                <button type="button" class="btn btn-success" onclick="funtion:AddRow()">
+                <button id="btActualizar" type="button" class="btn btn-success" onclick="funtion:AddRow()">
+                    <span class='fa fa-upload'></span> Actualizar
+                </button>
+
+                <button id="btAdicionar" type="button" class="btn btn-success" onclick="funtion:AddRow()">
                     <span class='fa fa-plus'></span> Adicionar
                 </button>
 
-                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                <button id="btFechar" type="button" class="btn btn-danger" data-dismiss="modal">
                     <span class='fa fa-remove'></span>Fechar
                 </button>
 
-                <button type="button" class="btn btn-primary" OnClick="funtion:clean()">
+                <button id="btLimpar" type="button" class="btn btn-primary" onClick="funtion:clean()">
                     <span class='fa fa-eraser'></span>Limpar
                 </button>
 
-
-
-
+                <button id="btRemover" type="button" class="btn btn-primary" onClick="funtion:remove()">
+                    <span class='fa fa-recycle'></span>Remover
+                </button>
             </div>
         </div>
     </div>

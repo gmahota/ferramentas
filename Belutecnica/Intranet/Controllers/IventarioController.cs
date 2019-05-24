@@ -34,8 +34,7 @@ namespace Intranet.Controllers
                           
                         from {0}.dbo.Artigo a with(nolock)
                         where a.TipoArtigo = '{1}'
-                    ",_netcore._Primavera.database,tipo)
-                    ;
+                    ",_netcore._Primavera.database, _netcore._Primavera.tipoArtigoFerramenta);
 
                 var listaArtigos = _context.Artigos.FromSql(strSql);
 
@@ -120,7 +119,7 @@ namespace Intranet.Controllers
         {
             try
             {
-                var strSql = string.Format(@"select Centro as codigo, descricao from PRIBELUAGRO.dbo.planocentros
+                var strSql = string.Format(@"select Centro as codigo, descricao from {0}.dbo.planocentros
                     where TipoConta = 'M' and Inactivo = 0 and Ano = YEAR(GetDate())",
                         _netcore._Primavera.database)
                     ;
@@ -128,6 +127,27 @@ namespace Intranet.Controllers
                 var listaProjeto = _context.Projeto.FromSql(strSql);
 
                 return Json(listaProjeto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpGet]
+        public JsonResult Get_TipoArtigo(string tipo)
+        {
+            try
+            {
+                string tipoArtigo;
+
+                switch (tipo)
+                {
+                    case "Ferramentas": tipoArtigo = _netcore._Primavera.tipoArtigoFerramenta; break;
+                    default: tipoArtigo = ""; break;
+                }
+
+                return Json(tipoArtigo);
             }
             catch (Exception ex)
             {

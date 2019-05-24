@@ -11,12 +11,18 @@ $(document).ready(function () {
         "sAjaxSource": '/Ferramentas/Lista',
         "columnDefs": [
             {
-                "targets": [0], "render": function (data) {
+                "targets": [0],
+                "visible": false,
+                "searchable": false
+            },
+            {
+                "targets": [1], "render": function (data) {
                     return moment(data).format('DD-MM-YYYY HH:mm');
                 }
             }
         ],
         "columns": [
+            { "data": "id", "title": "Id" },
             { "data": "data","title":"Data" },
             { "data": "funcionario","title":"Funcionário" },
             { "data": "nome", "title": "Nome" },
@@ -93,3 +99,15 @@ $(document).ready(function () {
     });
 
 });
+
+function edit() {
+    var data = ferramentasTable.rows({ selected: true }).data();
+
+    if (data[0].id != null) {
+        var url = '/Ferramentas/Edit/' + data[0].id;
+        window.location.href = url;
+    } else {
+        alert('Selecione primeiro o respectivo documento.');
+    }
+    
+}

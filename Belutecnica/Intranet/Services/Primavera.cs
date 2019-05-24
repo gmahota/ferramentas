@@ -21,5 +21,6 @@ namespace Intranet.Services
 
         public string apiKey { get; set; }
 
+        public string tipoArtigoFerramenta { get; set; }
     }
 }
