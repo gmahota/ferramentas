@@ -486,13 +486,47 @@ namespace Intranet.Controllers
                 try
                 {
                     _context.CabecStock.Update(cabecStock);
-                    _context.SaveChanges();
+                    _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     return Json(new { success = false, message = "Not Found" });
                 }
-               
+
+                var linhasStock = _context.LinhasStock.Where(p => p.CabecStockId == cabecStock.id);
+
+                foreach(var linha in linhasStock)
+                {
+                    var item = cabecDoc.linhas.Where(p => p.id == linha.id);
+                    if (item == null && item.Any() ==false)
+                    {
+                        linha.status = StockStatus.Cancelado;
+                    }
+                    else
+                    {
+                        linha.artigo = item.First().artigo;
+                        linha.descricao = item.First().descricao;
+                        linha.quantidade = item.First().quantidade;
+                        linha.codbarrasCabec = item.First().codbarrasCabec;
+                        linha.quantTrans = item.First().quantTrans;
+                        linha.quantPendente = item.First().quantPendente;
+                        linha.notas = item.First().notas;
+                        linha.areaNegocio = item.First().areaNegocio;
+                        linha.projecto = item.First().projecto;
+                    }
+
+                    _context.LinhasStock.Update(linha);
+                    _context.SaveChangesAsync();
+                }
+
+                var itens = cabecDoc.linhas.Where(p => p.id == 0);
+
+                foreach(var linha in itens)
+                {
+                    _context.LinhasStock.Add(linha);
+                    _context.SaveChangesAsync();
+                }
+
                 return Json(new { success = true, message = "Foi Gerado o Documento com Sucesso" });
             }
             catch (Exception ex)

@@ -123,15 +123,16 @@ function gravar(sair, id,tipodoc) {
         rows.each(function () {
             linha = {
                 "id": this[0].id,
-                "artigo": this[0].Ferramenta,
-                "descricao": this[0].Desc,
+                "artigo": this[0].artigo,
+                "descricao": this[0].descricao,
                 "codbarrasCabec": "",
-                "quantidade": this[0].Quantidade,
+                "quantidade": this[0].quantidade,
                 "quantTrans": 0,
-                "quantPendente": this[0].Quantidade,
-                "notas": this[0].Notas,
-                "areaNegocio": this[0].AreaNegocio,
-                "projecto": this[0].Projecto
+                "quantPendente": this[0].quantidade,
+                "notas": this[0].notas,
+                "areaNegocio": this[0].areaNegocio,
+                "projecto": this[0].projecto,
+                "CabecStockId": id
             };
 
             cabecDoc.linhas.push(linha);
@@ -379,6 +380,52 @@ function AddRow() {
     }
 }
 
+function EditRow() {
+    var func = $('#ListBoxfuncionario').val();
+    if (func.length == 0) {
+        alert("Selecione Primeiro o Funcionario ná janela de saidas");
+        return;
+    }
+
+    var desc = $("#listaArtigos").select2('data')[0].text;
+    var desc_centro = $("#ListAreaNegocio").select2('data')[0].text;
+
+    var linha = {
+
+        Ferramenta: $("#listaArtigos").val(),
+        Descricao: desc,
+        CodBarras: "",
+        Quantidade: $("#quantidade").val(),
+        Notas: $("#notas").val(),
+        AreaNegocio: $('#ListAreaNegocio').val(),
+        Projecto: $('#listBoxProjecto').val()
+
+    };
+
+    if (linha.Ferramenta.length == 0) {
+        alert("É obrigatorio o preenchimento do campo de Ferramentas");
+
+        $().alert()
+    } else {
+
+        removeFerramenta();
+        //var table1 = $('#tableFerramentas').DataTable();
+        ferramentasTable.row.add({
+
+            'id': 0,
+            'artigo': linha.Ferramenta,
+            'descricao': linha.Descricao,
+            'quantidade': linha.Quantidade,
+            'notas': linha.Notas,
+            'areaNegocio': linha.AreaNegocio,
+            //"AreaNegocio_Descricao": desc_centro,
+            'projecto': linha.Projecto
+        }).draw(false);
+
+        $("#ferramentaModal").modal('hide');
+    }
+}
+
 function removeFerramenta() {
     ferramentasTable.row('.selected').remove().draw(false);
 }
@@ -388,7 +435,7 @@ function editaFerramentaShow() {
 
     $("#listaArtigos").val(data.artigo).trigger("change");
     $("#quantidade").val(data.quantidade);
-    $("#ListAreaNegocio").val(data.areaNegocio).trigger("change");
+    $("#ListAreaNegocio").val(tempFuncionario.ccusto).trigger("change");
     $("#listBoxProjecto").val(data.projecto).trigger("change");
     $("#notas").val(data.notas);
 
@@ -398,10 +445,7 @@ function editaFerramentaShow() {
     $("#btLimpar").hide();
     $("#btAdicionar").hide();
 
-
     $("#ferramentaModal").modal({ show: true });
-
-
 }
 
 function addFerramentaShow() {
@@ -444,8 +488,7 @@ function inicializaTabela() {
 }
 
 function clean() {
-    
-    
+       
     $("#listaArtigos").val("").trigger("change");;
     $("#quantidade").val(1);
     $("#ListAreaNegocio").val(tempFuncionario.ccusto).trigger("change");
