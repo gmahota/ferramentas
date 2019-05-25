@@ -5,8 +5,11 @@ $(document).ready(function () {
     ferramentasTable = $('#ferramentasTable').DataTable({
         select: {
             style: 'single'
-        }, "ordering": true, searching: true,
-        responsive: true, "bProcessing": true,
+        },
+        "ordering": true,
+        searching: true,
+        responsive: true,
+        "bProcessing": true,
         "bServerSide": true,
         "sAjaxSource": '/Ferramentas/Lista',
         "columnDefs": [

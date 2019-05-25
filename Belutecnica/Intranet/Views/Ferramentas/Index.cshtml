@@ -29,47 +29,35 @@
     <script src="~/js/Ferramentas/Index.js"></script>
 }
 
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2"> <span class="fa fa-wrench"></span> Ferramentas</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group mr-2">
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2"> <span class="fa fa-wrench"></span> Ferramentas</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
 
-                <a class="btn btn-sm btn-outline-secondary" role="button" asp-action="Saida" asp-controller="Ferramentas">
-                    <span class="fa fa-plus"></span>
-                    Saida
-                </a>
+            <a class="btn btn-sm btn-outline-secondary" role="button" asp-action="Saida" asp-controller="Ferramentas">
+                <span class="fa fa-plus"></span>
+                Saida
+            </a>
 
-                <a class="btn btn-sm btn-outline-secondary" role="button" asp-action="Entrada" asp-controller="Ferramentas">
-                    <span class="fa fa-minus"></span>
-                    Devolução
-                </a>
+            <a class="btn btn-sm btn-outline-secondary" role="button" asp-action="Entrada" asp-controller="Ferramentas">
+                <span class="fa fa-minus"></span>
+                Devolução
+            </a>
 
-                <button class="btn btn-sm btn-outline-secondary" role="button" OnClick="funtion:edit()">
-                    <span class="fa fa-edit"></span>
-                    Editar
-                </button>
-            </div>
-            
+            <button class="btn btn-sm btn-outline-secondary" role="button" OnClick="funtion:edit()">
+                <span class="fa fa-edit"></span>
+                Editar
+            </button>
         </div>
+            
     </div>
+</div>
 
-    <h2 class="text-info">
-        Pendentes de devolução
+<h2 class="text-info">
+    Pendentes de devolução
 
-    </h2>
+</h2>
 
-    <table id="ferramentasTable" style="width:100%!important" class="table table-hover table-sm">
-        <thead class="thead-dark">
-            <tr>
-                <th>Id</th>
-                <th>Data</th>
-                <th>Funcionário</th>
-                <th>Nome</th>
-                <th>Nr. Da Guia</th>
-                <th>Notas</th>
-                <th></th>
-
-            </tr>
-        </thead>
-
-    </table>
+<table id="ferramentasTable" style="width:100%!important" class="table table-hover table-sm">
+  
+</table>

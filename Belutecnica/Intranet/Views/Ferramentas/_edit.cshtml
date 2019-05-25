@@ -1,12 +1,4 @@
-﻿@section Scripts
-    {
-    
-
-
-}
-
-
-<div class="modal fade" id="ferramentaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+﻿<div class="modal fade" id="editferramentaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -18,7 +10,7 @@
             <div class="modal-body">
                 <form>
                     <input type="hidden" id="idLinha" />
-                    
+
                     <div class="form-group row">
                         <label for="inputFerramenta" class="col-sm-3 col-form-label">Ferramenta</label>
 
@@ -72,15 +64,11 @@
                 </button>
 
                 <button id="btFechar" type="button" class="btn btn-danger" data-dismiss="modal">
-                    <span class='fa fa-remove'></span>Fechar
+                    <span class='fa fa-backward'></span>Fechar
                 </button>
 
                 <button id="btLimpar" type="button" class="btn btn-primary" onClick="funtion:clean()">
-                    <span class='fa fa-eraser'></span>Limpar
-                </button>
-
-                <button id="btRemover" type="button" class="btn btn-primary" onClick="funtion:remove()">
-                    <span class='fa fa-recycle'></span>Remover
+                    <span class='fa fa-remove'></span>Limpar
                 </button>
             </div>
         </div>

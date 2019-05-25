@@ -463,6 +463,48 @@ namespace Intranet.Controllers
 
         }
 
+        [HttpPost]
+        public JsonResult EditarDocumento([FromBody] CabecStock cabecDoc)
+        {
+            try
+            {
+
+                var cabecStock = _context.CabecStock.Find(cabecDoc.id);
+
+                if (cabecStock == null)
+                {
+                    return Json(new { success = false, message = "Not Found" });
+                }
+
+                cabecStock.funcionario = cabecDoc.funcionario;
+
+                cabecStock.nome = cabecDoc.nome;
+                cabecStock.nrDocExterno = cabecDoc.nrDocExterno;
+
+                cabecStock.data = cabecDoc.data;
+
+                try
+                {
+                    _context.CabecStock.Update(cabecStock);
+                    _context.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return Json(new { success = false, message = "Not Found" });
+                }
+               
+                return Json(new { success = true, message = "Foi Gerado o Documento com Sucesso" });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+        
+
         // GET: Ferramentas/Details/5
         public ActionResult Details(int id)
         {

@@ -11,12 +11,10 @@
       "destination": "wwwroot/font-awesome/"
     },
     {
-      "provider": "cdnjs",
       "library": "toastr.js@2.1.4",
       "destination": "wwwroot/lib/toastr.js/"
     },
     {
-      "provider": "cdnjs",
       "library": "datatables@1.10.19",
       "destination": "wwwroot/datatables/"
     },
@@ -29,13 +27,16 @@
       "destination": "wwwroot/lib/moment.js/"
     },
     {
-      "provider": "cdnjs",
       "library": "tempusdominus-bootstrap-4@5.1.2",
       "destination": "wwwroot/lib/tempusdominus-bootstrap-4/"
     },
     {
       "library": "Chart.js@2.7.3",
       "destination": "wwwroot/Chart.js/"
+    },
+    {
+      "library": "bootswatch@4.3.1",
+      "destination": "wwwroot/lib/bootswatch/"
     }
   ]
 }

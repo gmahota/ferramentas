@@ -8,10 +8,6 @@
   vertical-align: text-bottom;
 }
 
-/*
- * Sidebar
- */
-
 .sidebar {
   position: fixed;
 top: 0;
@@ -61,25 +57,6 @@ padding-top: .5rem;
   font-size: .75rem;
   text-transform: uppercase;
 }
-
-/*
- * Content
- */
-
-[role="main"] {
-  padding-top: 133px; /* Space for fixed navbar */
-}
-
-@media(min-width: 768px)
-{
-  [role="main"] {
-    padding-top: 48px; /* Space for fixed navbar */
-  }
-}
-
-/*
- * Navbar
- */
 
 .navbar-brand {
   padding-top: .75rem;

@@ -5,30 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    td.details-control {
-        background: url('/resources/details_open.png') no-repeat center center;
-        cursor: pointer;
-    }
-
-    tr.shown td.details-control {
-        background: url('/resources/details_close.png') no-repeat center center;
-    }
-</style>
-
 @section Scripts
 {
     <script src="~/js/Ferramentas/Edit.js"></script>
 }
 
-
-
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2"> <span class="fa fa-wrench"></span> Saida de Ferramentas</h1>
+    <h1 class="h2"> <span class="fa fa-wrench"></span> Gestão Ferramentas - Edição</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">
 
-            <button id="btGravar_New" class="btn btn-sm btn-outline-success" onclick="funtion:gravar(false,'@Model.Documento.documento')">
+            <button id="btGravar_New" class="btn btn-sm btn-outline-success" onclick="funtion:gravar(false,'@Model.id','@Model.Documento.documento')">
                 <span class="fa fa-save"></span> Gravar
             </button>
 
@@ -40,110 +27,80 @@
                 <span class="fa fa-print"></span> Imprimir
             </button>
 
-            <button id="btremover" class="btn btn-sm btn-outline-danger" onclick="funtion:Sair('@Model.Documento.descricao')">
+            <button id="btremover" class="btn btn-sm btn-outline-primary" onclick="funtion:Sair('@Model.Documento.descricao')">
                 <span class="fa fa-remove"></span> Cancelar
             </button>
         </div>
     </div>
 </div>
     
+<div class="card">
+    <div class="card-header">
+        <strong>Documento:</strong> @Model.Documento.descricao
 
-    <div class="card">
-        <div class="card-header">
-            <strong>Documento:</strong> @Model.Documento.descricao
+        <span class="float-right"> <strong>Estado:</strong> @Model.status</span>
+    </div>
 
-            <span class="float-right"> <strong>Estado:</strong> @Model.status</span>
-        </div>
+    <div class="card-body">
+        <form class="form-horizontal" role="form" style="padding-top:10px">
+            <div class="row">
+                <div class="col-md-12">
 
-        <div class="card-body">
-            <form class="form-horizontal" role="form" style="padding-top:10px">
-                <div class="row">
-                    <div class="col-md-12">
+                    <div class="row">
+                        <label class="control-label " for="funcionario">Funcionário:</label>
 
-                        <div class="row">
-                            <label class="control-label " for="funcionario">Funcionário:</label>
-
-                            <div class="col-md-4">
-                                <select id="ListBoxfuncionario" class="selectpicker form-control" data-live-search="true"></select>
-                            </div>
-
-
-                            <label class="control-label " for="data">Data:</label>
-
-                            <div class="input-group date col-md-5" id="dtData" data-target-input="nearest">
-                                <input asp-for="data" type="text" class="form-control datetimepicker-input" data-target="#dtData" />
-                                <div class="input-group-append" data-target="#dtData" data-toggle="datetimepicker">
-                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                </div>
-                            </div>
-
+                        <div class="col-md-4">
+                            <select id="ListBoxfuncionario" class="selectpicker form-control" data-live-search="true"></select>
                         </div>
-                        <div class="row" style="padding-top:10px">
-
-                            <label class="control-label " for="nrDocExterno">Nr. Guia:</label>
-                            <div class="col-md-4">
 
 
-                                <input asp-for="nrDocExterno" class="form-control" />
+                        <label class="control-label " for="data">Data:</label>
 
+                        <div class="input-group date col-md-5" id="dtData" data-target-input="nearest">
+                            <input asp-for="data" type="text" class="form-control datetimepicker-input" data-target="#dtData" />
+                            <div class="input-group-append" data-target="#dtData" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
-
-
-
                         </div>
 
                     </div>
-                </div>
-            </form>
-        </div>
+                    <div class="row" style="padding-top:10px">
 
-        <div class="card-footer text-muted" style="background-color:white">
-            <div class="btn-toolbar mb-2 mb-md-0">
-                <div class="btn-group mr-2">
-                    <div>
-                        <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ferramentaModal">
-                            <span class="fa fa-plus"></span> Ferramenta
-                        </button>
-
-                        <button class="btn btn-outline-dark" onclick="funtion:editaFerramenta()">
-                            <span class="fa fa-edit"></span> Editar
-                        </button>
-
-                        <button class="btn  btn-outline-danger" onclick="funtion:removeFerramenta()">
-                            <span class="fa fa-remove"></span> Remover
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-                    <div class="container-fluid ">
-                        <table id="tableFerramentas" class="table table-hover table-sm col-sm-10" style="padding-top:20px; width:100%!important">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Ferramenta</th>
-                                    <th>Descrição</th>
-                                    <th>Quant.</th>
-                                    <th>Notas</th>
-                                    <th>Centro de Negocio</th>
-                                    <th>Desc. Centro de Negocio</th>
-                                    <th>Projecto</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-
-                            <tbody></tbody>
-                            <tfoot>
-
-                            </tfoot>
-                        </table>
+                        <label class="control-label " for="nrDocExterno">Nr. Guia:</label>
+                        <div class="col-md-4">
+                            <input asp-for="nrDocExterno" class="form-control" />
+                        </div>
                     </div>
 
                 </div>
             </div>
+        </form>
+    </div>
 
+    <div class="card-footer text-muted" style="background-color:white">
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <div>
+                    <button class="btn btn-outline-primary"  onclick="funtion:addFerramentaShow()">
+                        <span class="fa fa-plus"></span> Ferramenta
+                    </button>
 
+                    <button class="btn btn-outline-dark" onclick="funtion:editaFerramentaShow()">
+                        <span class="fa fa-edit"></span> Editar
+                    </button>
+
+                    <button class="btn  btn-outline-danger" onclick="funtion:removeFerramenta()">
+                        <span class="fa fa-remove"></span> Remover
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <table id="tableFerramentas" class="table table-hover table-sm tableFerramentas" style=""></table>
+    </div>
+</div>
 
 <input type="hidden" asp-for="id" />
 <input type="hidden" asp-for="funcionario"/>
 
-<partial name="_Linha" />
+<partial name="_add" />

@@ -30,8 +30,6 @@ $(document).ready(function () {
     GetListaArtigos(tipoArtigo);
     GetListaArtigosModal(tipoArtigo);
 
-    
-
     GetListaProjeto();
 
     GetListaNegocio();

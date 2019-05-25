@@ -14,23 +14,28 @@
    
 }
 
-<div class="btn-group" role="group" aria-label="Basic example" style="padding-bottom:10px">
-    <button ID="btGravar_New" class="btn btn-outline-success" OnClick="funtion:gravar(false,'@Model.Documento.documento')">
-        <span class="fa fa-save"></span> Gravar
-    </button>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2"> <span class="fa fa-wrench"></span>Gestão de Ferramentas</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
 
-    <button ID="btGravar" class="btn btn-outline-success" OnClick="funtion:gravar(true,'@Model.Documento.documento')">
-        <span class="fa fa-floppy-o"></span> Gravar e Sair
-    </button>
+            <button id="btGravar_New" class="btn btn-sm btn-outline-success" onclick="funtion:gravar(false,'@Model.Documento.documento')">
+                <span class="fa fa-save"></span> Gravar
+            </button>
 
-    <button id="btImprir" class="btn btn-sm btn-outline-primary" hidden>
-        <span class="fa fa-print"></span> Imprimir
-    </button>
+            <button id="btGravar" class="btn btn-sm btn-outline-success" onclick="funtion:gravar(true,'@Model.Documento.documento')">
+                <span class="fa fa-floppy-o"></span> Gravar e Sair
+            </button>
 
-    <button id="btremover" class="btn btn-sm btn-outline-danger" onclick="funtion:Sair('@Model.Documento.descricao')">
-        <span class="fa fa-remove"></span> Cancelar
-    </button>
+            <button id="btImprir" class="btn btn-sm btn-outline-primary" hidden>
+                <span class="fa fa-print"></span> Imprimir
+            </button>
 
+            <button id="btremover" class="btn btn-sm btn-outline-danger" onclick="funtion:Sair('@Model.Documento.descricao')">
+                <span class="fa fa-remove"></span> Cancelar
+            </button>
+        </div>
+    </div>
 </div>
 
 <form class="form-horizontal" role="form">
@@ -50,7 +55,7 @@
                     <div class="row">
                         <label class="control-label" for="funcionario">Funcionario:</label>
 
-                        <div class="col-md-4" >
+                        <div class="col-md-4">
                             <select id="ListBoxfuncionario" class="selectpicker form-control" data-width="auto" data-live-search="true"></select>
                         </div>
 
@@ -77,7 +82,7 @@
 
                 </div>
 
-                
+
 
             </div>
 
@@ -94,11 +99,11 @@
             </div>*@
 
 
-            <div class="row linhasDoc" style="padding-top:20px">
+            @*<div class="row linhasDoc" style="padding-top:20px">
 
                 <table id="tableEntradaFerramentas" style="width:100%!important" class="table table-hover table-sm">
                     <thead class="thead-dark">
-                       
+
                     </thead>
 
                     <tbody></tbody>
@@ -106,7 +111,13 @@
 
                     </tfoot>
                 </table>
-            </div>
+            </div>*@
+        </div>
+
+        <div class="card-footer text-muted" style="background-color:white">
+            
+
+            <table id="tableEntradaFerramentas" class="table table-hover table-sm tableFerramentas linhasDoc" style=""></table>
         </div>
 
     </div>

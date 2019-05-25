@@ -1,4 +1,4 @@
-
+var ferramentasTable;
 
 $("#listaArtigos").select2({
     dropdownParent: $("#ferramentaModal")
@@ -18,9 +18,13 @@ $('#ListAreaNegocio').on('change', function (e) {
     
 });
 
-$('#tableFerramentas').DataTable({
+ferramentasTable = $('#tableFerramentas').DataTable({
 
-    //data: data,
+    "ordering": true,
+    searching: false,
+    responsive: true,
+    "bProcessing": true,
+    "lengthChange": false,
     "columnDefs": [
         {
             "targets": [4],
@@ -91,6 +95,7 @@ function AddRow() {
         }).draw(false);
 
         clean();
+        $("#ferramentaModal").modal('hide');
     }
 
     
@@ -192,6 +197,26 @@ function gravar(sair, tipodoc) {
     } else {
         alert("Preencha as Linhas");
     }
+}
+
+function addFerramentaShow() {
+
+    var func = $('#ListBoxfuncionario').val();
+    if (func.length == 0) {
+        alert("Selecione Primeiro o Funcionario ná janela de saidas");
+        return;
+    }
+
+    clean();
+
+    $("#btActualizar").hide();
+    $("#btRemover").hide();
+
+
+    $("#btLimpar").show();
+    $("#btAdicionar").show();
+
+    $("#ferramentaModal").modal({ show: true });
 }
 
 function clean() {

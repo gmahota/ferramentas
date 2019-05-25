@@ -6,7 +6,69 @@ var tempFuncionario = {};
 var listaArtigos = {};
 var tipoArtigo = 3;
 
+var listaLinhasRemovidas = {};
+var linhasEditadas = {};
+var linha = {};
+
+$("#listaArtigos").select2({
+    dropdownParent: $("#ferramentaModal")
+});
+
+$("#ListAreaNegocio").select2({
+    dropdownParent: $("#ferramentaModal")
+});
+
+$("#ListAreaNegocio").prop('disabled', true);
+
+$("#listBoxProjecto").select2({
+    dropdownParent: $("#ferramentaModal")
+});
+
+$('#ListAreaNegocio').on('change', function (e) {
+
+});
+
+ferramentasTable = $('#tableFerramentas').DataTable({
+    select: {
+        style: 'single'
+    },
+    "ordering": true,
+    searching: false,
+    responsive: true,
+    "bProcessing": true,
+    "lengthChange": false,
+    "columnDefs": [
+        {
+            "targets": [0],
+            "visible": false,
+            "searchable": false
+        }
+    ],
+    "columns": [
+        { data: 'id', "title": "Id" },
+        { data: 'artigo', "title": "Ferramenta" },
+        { data: 'descricao', "title": "Descrição" },
+        { data: 'quantidade', "title": "Quant." },
+        { data: 'notas', "title": "Notas" },
+        { data: 'areaNegocio', "title": "Centro de Negocio" },
+        { data: 'projecto', "title": "Projecto" }
+    ]
+});
+
 $(document).ready(function () {
+    
+    $('#ListBoxfuncionario').on('select2:select', function (e) {
+
+        var data = e.params.data;
+        if (data.id == "") {
+            $(".linhasDoc").hide();
+        } else {
+            $(".linhasDoc").show();
+        }
+
+        daFuncionario(data.id);
+
+    });
 
     GetListaFuncionarios();
 
@@ -15,66 +77,34 @@ $(document).ready(function () {
     GetListaProjeto();
     GetListaNegocio();
 
-    var func = $("#funcionario").val();
-
-    $("#ListBoxfuncionario").val(func).trigger("change");
-
-    
-
-    ferramentasTable = $('#tableFerramentas').DataTable({
-        select: {
-            style: 'single'
-        },
-        "ordering": true,
-        searching: false,
-        responsive: true,
-        "bProcessing": true,
-        //"bServerSide": true,
-        //"sAjaxSource": '/Ferramentas/LinhasDocStock',
-        //data: data,
-        "columnDefs": [
-            {
-                "targets": [0],
-                "visible": false,
-                "searchable": false
-            }
-        ],
-        "columns": [
-            { data: 'id', "title": "Id" },
-            { data: 'artigo', "title": "Ferramenta" },
-            { data: 'descricao', "title": "Descrição" },
-            { data: 'quantidade', "title": "Quant." },
-            { data: 'notas', "title": "Notas" },
-            { data: 'areaNegocio', "title": "Centro de Negocio" },
-            { data: 'projecto', "title": "Projecto" },
-            {
-                "className": 'details-control',
-                "orderable": false,
-                "data": null,
-                "defaultContent": ''
-            }
-            //{ data: 'Accoes' }
-
-        ]
-    });
-
-    //// Add event listener for opening and closing details
-    //$('#tableFerramentas tbody').on('click', 'tr', function () {
-
-        
-    //});
-
     inicializaTabela();
 
 });
 
-function gravar(sair, id) {
+function daFuncionario(funcionario) {
+    var ccusto = "";
 
-    var linha = {};
+    tempFuncionario = {};
+
+    $.each(listaFuncionarios, function (key, value) {
+
+        if (value.codigo == funcionario) {
+
+            tempFuncionario = value;
+            ccusto = tempFuncionario.ccusto;
+
+        }
+    });
+
+    $("#ListAreaNegocio").val(ccusto).trigger("change");
+}
+
+function gravar(sair, id,tipodoc) {
 
     var nomeFunc = $("#ListBoxfuncionario").select2('data')[0].text;
 
     var cabecDoc = {
+        "id": id,
         "tipodoc": tipodoc,
         "funcionario": $('#ListBoxfuncionario').val(),
         "nome": nomeFunc,
@@ -92,6 +122,7 @@ function gravar(sair, id) {
 
         rows.each(function () {
             linha = {
+                "id": this[0].id,
                 "artigo": this[0].Ferramenta,
                 "descricao": this[0].Desc,
                 "codbarrasCabec": "",
@@ -126,7 +157,7 @@ function gravar(sair, id) {
         });
 
         $.ajax({
-            url: "/Ferramentas/GravarSaida",
+            url: "/Ferramentas/EditarDocumento",
             type: "POST",
             contentType: 'application/json; charset=utf-8',
             headers: {
@@ -142,7 +173,7 @@ function gravar(sair, id) {
                         var url = '/Ferramentas';
                         window.location.href = url;
                     } else {
-                        var url = '/Ferramentas/Saida';
+                        var url = '/Ferramentas';
                         window.location.href = url;
                     }
 
@@ -178,9 +209,7 @@ function GetListaArtigos(tipo) {
 function GetListaArtigosModal(tipo) {
     $.ajax({
         url: "/Iventario/ListaArtigos?tipo=" + tipo,
-        //type: "Get",
-        //contentType: "application/json",
-        //data: JSON.stringify(sendJsonData),
+
         success: function (data) {
 
             listaArtigos = data;
@@ -269,6 +298,7 @@ function GetListaFuncionarios() {
             var func = $("#funcionario").val();
 
             $("#ListBoxfuncionario").val(func).trigger("change");
+            daFuncionarioCNegocio(func);
         }
     });
 }
@@ -314,7 +344,6 @@ function AddRow() {
     var desc = $("#listaArtigos").select2('data')[0].text;
     var desc_centro = $("#ListAreaNegocio").select2('data')[0].text;
 
-
     var linha = {
 
         Ferramenta: $("#listaArtigos").val(),
@@ -354,14 +383,36 @@ function removeFerramenta() {
     ferramentasTable.row('.selected').remove().draw(false);
 }
 
-function editaFerramenta() {
+function editaFerramentaShow() {
     var data = ferramentasTable.rows({ selected: true }).data()[0];
 
     $("#listaArtigos").val(data.artigo).trigger("change");
     $("#quantidade").val(data.quantidade);
-    $("#ListAreaNegocio").val(data.areaNegocio);
-    $("#listBoxProjecto").val(data.projecto);
+    $("#ListAreaNegocio").val(data.areaNegocio).trigger("change");
+    $("#listBoxProjecto").val(data.projecto).trigger("change");
     $("#notas").val(data.notas);
+
+    $("#btActualizar").show();
+    $("#btRemover").show();
+
+    $("#btLimpar").hide();
+    $("#btAdicionar").hide();
+
+
+    $("#ferramentaModal").modal({ show: true });
+
+
+}
+
+function addFerramentaShow() {
+    clean();
+
+    $("#btActualizar").hide();
+    $("#btRemover").hide();
+    
+
+    $("#btLimpar").show();
+    $("#btAdicionar").show();
 
     $("#ferramentaModal").modal({ show: true });
 }
@@ -390,4 +441,14 @@ function inicializaTabela() {
             });
         }
     });
+}
+
+function clean() {
+    
+    
+    $("#listaArtigos").val("").trigger("change");;
+    $("#quantidade").val(1);
+    $("#ListAreaNegocio").val(tempFuncionario.ccusto).trigger("change");
+    $("#listBoxProjecto").val("").trigger("change");;
+    $("#notas").val("");
 }

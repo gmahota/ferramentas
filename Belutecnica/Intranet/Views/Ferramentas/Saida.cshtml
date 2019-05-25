@@ -6,50 +6,7 @@
 }
 
 @section Scripts
-    {
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var pressed = false;
-            var chars = [];
-            $(window).keypress(function (e) {
-                if (e.which >= 48 && e.which <= 57) {
-                    chars.push(String.fromCharCode(e.which));
-                }
-                //console.log(e.which + ":" + chars.join("|"));
-                if (pressed == false) {
-                    setTimeout(function () {
-                        if (chars.length >= 10) {
-                            var barcode = chars.join("");
-                            console.log("Barcode Scanned: " + barcode);
-                            // assign value to some input (or do whatever you want)
-                            $("#MainContent_txtInput").val(barcode);
-                            //var selected = $('#ListBoxfuncionario').find('option:selected').text();
-                            var selected = $('#MainContent_ListBoxfuncionario').find('option:selected').val();;
-                            if (selected == "") {
-                                getFuncionarioCodigoBarras();
-                            } else {
-                                var btn = document.getElementById("MainContent_NewFerramentaBt");
-                                if (btn) btn.click();
-                            }
-                        } else {
-                        }
-                        chars = [];
-                        pressed = false;
-                    }, 500);
-                }
-                pressed = true;
-            });
-        });
-        $(document).ready(function () {
-            GetListaArtigos();
-            GetListaFuncionarios();
-            GetListaProjeto();
-            
-        });
-        function OnSuccess(response) {
-            console.log(response.d);
-        }
-    </script>
+ {
 
     <script src="~/js/Ferramentas/Ferramentas.js"></script>
     <script src="~/js/Ferramentas/Saida.js"></script>
@@ -57,28 +14,28 @@
 }
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2"> <span class="fa fa-wrench"></span> Saida de Ferramentas</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group mr-2">
-                
-                <button id="btGravar_New" class="btn btn-sm btn-outline-success" onclick="funtion:gravar(false,'@Model.Documento.documento')">
-                    <span class="fa fa-save"></span> Gravar
-                </button>
+    <h1 class="h2"> <span class="fa fa-wrench"></span> Gestão de Ferramentas</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
 
-                <button id="btGravar" class="btn btn-sm btn-outline-success" onclick="funtion:gravar(true,'@Model.Documento.documento')">
-                    <span class="fa fa-floppy-o"></span> Gravar e Sair
-                </button>
+            <button id="btGravar_New" class="btn btn-sm btn-outline-success" onclick="funtion:gravar(false,'@Model.Documento.documento')">
+                <span class="fa fa-save"></span> Gravar
+            </button>
 
-                <button id="btImprir" class="btn btn-sm btn-outline-primary" hidden> 
-                    <span class="fa fa-print"></span> Imprimir
-                </button>
+            <button id="btGravar" class="btn btn-sm btn-outline-success" onclick="funtion:gravar(true,'@Model.Documento.documento')">
+                <span class="fa fa-floppy-o"></span> Gravar e Sair
+            </button>
 
-                <button id="btremover" class="btn btn-sm btn-outline-danger" onclick="funtion:Sair('@Model.Documento.descricao')">
-                    <span class="fa fa-remove"></span> Cancelar
-                </button>
-            </div>
+            <button id="btImprir" class="btn btn-sm btn-outline-primary" hidden>
+                <span class="fa fa-print"></span> Imprimir
+            </button>
+
+            <button id="btremover" class="btn btn-sm btn-outline-danger" onclick="funtion:Sair('@Model.Documento.descricao')">
+                <span class="fa fa-remove"></span> Cancelar
+            </button>
         </div>
     </div>
+</div>
 
 <form class="form-horizontal" role="form" style="padding-top:10px">
 
@@ -122,7 +79,7 @@
 
                         </div>
 
-                        <a ID="AddNewFerramentaBt" class="btn btn-default" data-toggle="modal" data-target="#ferramentaModal">
+                        <a ID="AddNewFerramentaBt" class="btn btn-default" onclick="funtion:addFerramentaShow()">
                             <span class="fa fa-plus"></span> Ferramenta
                         </a>
 
@@ -136,7 +93,7 @@
             </div>
 
             <div class="container-fluid linhasDoc">
-                <table id="tableFerramentas" class="table table-hover table-sm col-sm-10" style="padding-top:20px; width:100%!important">
+                <table id="tableFerramentas" class="table table-hover table-sm col-sm-10 tableFerramentas" style="">
                     <thead class="thead-dark">
                         <tr>
                             <th>Ferramenta</th>
@@ -160,11 +117,8 @@
 
 
         </div>
-
-        
-
     </div>
 
 </form>
 
-<partial name="_Linha" />
+<partial name="_add" />
